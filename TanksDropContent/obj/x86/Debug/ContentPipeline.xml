@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Score.spritefont</Source>
+      <Name>Score</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Score.xnb</Output>
+      <Time>2013-09-09T20:44:43.4882812+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Bullet.png</Source>
+      <Name>Sprites\Bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Bullet.xnb</Output>
+      <Time>2013-09-12T05:27:10.2539062+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\TankMap.png</Source>
+      <Name>Sprites\TankMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\TankMap.xnb</Output>
+      <Time>2013-09-11T17:45:31.4287109+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Deflector.png</Source>
+      <Name>Sprites\Deflector</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Deflector.xnb</Output>
+      <Time>2013-09-11T18:24:48.1591796+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Minimize.png</Source>
+      <Name>Sprites\Minimize</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Minimize.xnb</Output>
+      <Time>2013-09-12T17:09:22.0302734+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\PortalMap.png</Source>
+      <Name>Sprites\PortalMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\PortalMap.xnb</Output>
+      <Time>2013-09-14T14:22:55.6660156+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\RedBullet.png</Source>
+      <Name>Sprites\RedBullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\RedBullet.xnb</Output>
+      <Time>2013-09-14T15:51:43.1943359+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Boom.png</Source>
+      <Name>Sprites\Boom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Boom.xnb</Output>
+      <Time>2013-09-14T16:14:00.2822265+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Missile.png</Source>
+      <Name>Sprites\Missile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Missile.xnb</Output>
+      <Time>2013-09-14T15:58:27.4658203+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Face.png</Source>
+      <Name>Sprites\Face</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Face.xnb</Output>
+      <Time>2013-09-14T19:36:00.2109375+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Switcher.png</Source>
+      <Name>Sprites\Switcher</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Switcher.xnb</Output>
+      <Time>2013-09-16T19:36:00.6269531+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\BlackHole.png</Source>
+      <Name>Sprites\BlackHole</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\BlackHole.xnb</Output>
+      <Time>2013-09-16T20:57:55.8496094+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\SpeedBoost.png</Source>
+      <Name>Sprites\SpeedBoost</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\SpeedBoost.xnb</Output>
+      <Time>2013-09-17T10:58:09.7978516+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Accelerator.png</Source>
+      <Name>Sprites\Accelerator</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Accelerator.xnb</Output>
+      <Time>2013-09-17T11:12:01.8652344+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Roulette.png</Source>
+      <Name>Sprites\Roulette</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Roulette.xnb</Output>
+      <Time>2013-09-17T14:25:31.2470703+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lock.png</Source>
+      <Name>Sprites\Lock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Lock.xnb</Output>
+      <Time>2013-09-17T16:26:51.0878906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\ForceField.png</Source>
+      <Name>Sprites\ForceField</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\ForceField.xnb</Output>
+      <Time>2013-09-18T11:12:31.4023438+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\ExtraLife.png</Source>
+      <Name>Sprites\ExtraLife</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\ExtraLife.xnb</Output>
+      <Time>2013-09-18T11:27:15.0908203+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\ExtraAlive.png</Source>
+      <Name>Sprites\ExtraAlive</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\ExtraAlive.xnb</Output>
+      <Time>2013-09-18T11:36:39.6806641+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Disabler.png</Source>
+      <Name>Sprites\Disabler</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Disabler.xnb</Output>
+      <Time>2013-09-18T14:18:57.7138672+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Ghost.png</Source>
+      <Name>Sprites\Ghost</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Ghost.xnb</Output>
+      <Time>2013-09-19T10:28:26.9042968+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Tripler.png</Source>
+      <Name>Sprites\Tripler</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Tripler.xnb</Output>
+      <Time>2013-09-19T12:23:42.4794922+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Concealer.png</Source>
+      <Name>Sprites\Concealer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\Sprites\Concealer.xnb</Output>
+      <Time>2013-09-25T19:31:42.2098671+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBetaContent\</RootDirectory>
+      <LoggerRootDirectory>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBetaContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\My Documents\Nitzan\Visual Studio 2010\Projects\TanksDrop\TanksDropBeta\TanksDropBeta\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-07-20T14:23:37.515625+03:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

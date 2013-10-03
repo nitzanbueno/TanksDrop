@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using TanksDrop.Projectiles;
+
+namespace TanksDrop.PowerUps
+{
+	class Concealer : TimedPowerUp
+	{
+		bool didSwitch;
+		bool toSwitch;
+		Colors origColor;
+		KeySet origKeys;
+		TankObject SwitchedTank;
+
+		public Concealer( GameTime gameTime )
+			: base( gameTime, 10000 )
+		{
+			toSwitch = random.Next( 2 ) == 0;
+			if ( Owner != null )
+			{
+				SwitchedTank = Owner;
+				origColor = Owner.TankColor;
+				origKeys = Owner.Keys;
+			}
+		}
+
+		public override Texture2D LoadTex( ContentManager Content )
+		{
+			return Content.Load<Texture2D>( "Sprites\\Concealer" );
+		}
+
+		public override void DoPickup( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		{
+			if ( SwitchedTank == null )
+			{
+				SwitchedTank = Owner;
+				origColor = Owner.TankColor;
+				origKeys = Owner.Keys;
+			}
+			if ( !didSwitch && Tanks.Count<TankObject>(x => x.IsInGame) > 1)
+			{
+				HashSet<TankObject> TankSet = new HashSet<TankObject>( Tanks );
+				foreach ( TankObject tank in Tanks )
+				{
+					if ( !tank.IsInGame || tank == Owner )
+					{
+						TankSet.Remove( tank );
+					}
+				}
+				SwitchedTank = ( TankSet.ToArray<TankObject>() )[ random.Next( TankSet.Count ) ];
+				if ( toSwitch )
+				{
+					Vector2 OwnerPos = Owner.Position;
+					float OwnerRot = Owner.Rotation;
+					float OwnerScale = Owner.Scale;
+					Owner.Position = SwitchedTank.Position;
+					Owner.Rotation = SwitchedTank.Rotation;
+					Owner.Scale = SwitchedTank.Scale;
+					SwitchedTank.Position = OwnerPos;
+					SwitchedTank.Rotation = OwnerRot;
+					SwitchedTank.Scale = OwnerScale;
+				}
+				didSwitch = true;
+			}
+			Owner.TankColor = SwitchedTank.TankColor;
+			Owner.Keys = SwitchedTank.Keys;
+		}
+
+		public override void Revert()
+		{
+			Owner.TankColor = origColor;
+			Owner.Keys = origKeys;
+		}
+	}
+}
