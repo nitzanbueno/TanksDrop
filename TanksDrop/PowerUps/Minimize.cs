@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up that shrinks its owner 3x for 10 seconds, making bullets easy to dodge.
+	/// </summary>
 	class Minimize : TimedPowerUp
 	{
 		public Minimize( GameTime gameTime )

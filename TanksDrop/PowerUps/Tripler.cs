@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up that makes its taker shoot three of its next projectile instead of one.
+	/// The other two projectiles do not count towards the bullet limit.
+	/// </summary>
 	class Tripler : TimedPowerUp
 	{
 		int width;

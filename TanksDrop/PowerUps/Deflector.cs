@@ -9,17 +9,15 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An instant power-up that when used turns all projectiles 180 degrees.
+	/// </summary>
 	class Deflector : InstantPowerUp
 	{
 		public Deflector( GameTime gameTime )
 			: base( gameTime )
 		{
 			time = 1;
-		}
-
-		public override bool DoesGoThruFence( FenceObject fenceObject )
-		{
-			return false;
 		}
 
 		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )

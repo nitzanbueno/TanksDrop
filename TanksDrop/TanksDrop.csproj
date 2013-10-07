@@ -107,9 +107,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\Menu.cs" />
-    <Compile Include="Menu\MenuButton.cs" />
-    <Compile Include="Menu\MenuKey.cs" />
     <Compile Include="PowerUps\Accelerator.cs" />
     <Compile Include="PowerUps\AppearingPowerUp.cs" />
     <Compile Include="PowerUps\BlackHole.cs" />
@@ -158,7 +155,7 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TanksDropBetaContent\TanksDropContent.contentproj">
+    <ProjectReference Include="..\TanksDropContent\TanksDropContent.contentproj">
       <Name>TanksDropContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
       <Project>{09EE4BDF-70C8-40C3-BF31-36FEA31CED95}</Project>

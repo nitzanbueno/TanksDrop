@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An instant power-up that, when used, removes all tanks' power-ups, both timed and instant, all on-board projectiles and all on-board pickups.
+	/// </summary>
 	class Disabler : InstantPowerUp
 	{
 		public Disabler( GameTime gameTime )

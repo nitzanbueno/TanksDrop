@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.Projectiles
 {
+	/// <summary>
+	/// The basic black bullet that gets deflected off of fences and kills the first tank it touches then despawns.
+	/// Also despawns after 10 seconds (or the ShotTimeLimit setting in milliseconds).
+	/// </summary>
 	class BasicBullet : ProjectileObject
 	{
 		/*public Vector2 Position;

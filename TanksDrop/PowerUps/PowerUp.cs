@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An in-game object that causes an effect when it is triggered.
+	/// </summary>
 	abstract class PowerUp
 	{
 		public TankObject Owner;
@@ -48,46 +51,34 @@ namespace TanksDrop.PowerUps
 		}
 
 		/// <summary>
-		/// Use this for something I do every frame, or if I am an appearing power-up, whatever I do.
+		/// Updates the game with the power-up's logic.
 		/// </summary>
-		/// <param name="gameTime">The current game time. Used to make me disappear.</param>
+		/// <param name="gameTime">The current game time. Used to remove the power-up.</param>
 		/// <param name="Tanks">All players in the game, both dead and alive.</param>
 		/// <param name="Projectiles">All moving projectiles on the board.</param> 
 		/// <param name="Fences">All fences on the board.</param>
-		/// <returns>True if I should be removed, otherwise false.</returns>
+		/// <returns>True if the power-up should be removed, otherwise false.</returns>
 		public abstract bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences );
 
-		/*
 		/// <summary>
-		/// Called when a tank places an instant power-up.
+		/// Changes the timed or appearing power-up's duration.
 		/// </summary>
-		/// <param name="Tanks">All tanks in the game, both dead and alive.</param>
-		/// <param name="Projectiles">All projectiles on the board.</param>
-		/// <param name="Fences">All fences on the board.</param>
-		public abstract void Use( TankObject[] Tanks, ref HashSet<ProjectileObject> Projectiles, ref HashSet<FenceObject> Fences );
-
-		/// <summary>
-		/// If there is something I need to do every frame just when my tank holds me, it belongs here. (Otherwise, it belongs in the 'Update' Function.)
-		/// </summary>
-		/// <param name="Tanks">All players in the game, both dead and alive.</param>
-		/// <param name="Projectiles">All moving projectiles on the board.</param>
-		/// <param name="Fences">All fences on the board.</param>
-		protected abstract void DoPickup( TankObject[] Tanks, ref HashSet<ProjectileObject> Projectiles, ref HashSet<FenceObject> Fences );
-		public abstract void Revert();
-		*/
-
+		/// <param name="newDuration">The new power-up's duration in milliseconds.</param>
 		public void ChangeDuration( int newDuration )
 		{
 			time = newDuration;
 		}
 
 		/// <summary>
-		/// Should my tank go through the given fence using me as its power up?
+		/// Called whenever a tank collides with a fence.
 		/// </summary>
-		/// <param name="fenceObject">The Given Fence.</param>
+		/// <param name="fenceObject">The fence the tank collided with.</param>
 		/// <returns>True if the tank should go through the given fence - otherwise, false.</returns>
 		public virtual bool DoesGoThruFence( FenceObject fenceObject ) { return false; }
 
+		/// <summary>
+		/// The scale to draw the power-up's pickup with.
+		/// </summary>
 		public virtual float Scale
 		{
 			get
@@ -100,17 +91,29 @@ namespace TanksDrop.PowerUps
 		/// Called when a tank moves.
 		/// </summary>
 		/// <param name="moveFactor">The velocity of the tank.</param>
-		/// <returns>The new velocity of the tank - if it's 0, it's locked, for instance.</returns>
+		/// <returns>The new velocity of the tank - if it's 0, it doesn't move, for instance.</returns>
 		public virtual float OnMove( float moveFactor )
 		{
 			return moveFactor;
 		}
 
+		/// <summary>
+		/// Called when a tank rotates.
+		/// </summary>
+		/// <param name="moveFactor">The rotation angle of the tank.</param>
+		/// <returns>The new angle of the tank - if it's 0, it doesn't rotate, for instance.</returns>
 		public virtual float OnRotate( float angleFactor )
 		{
 			return angleFactor;
 		}
 
+		/// <summary>
+		/// Called whenever the power-up's owner wants to shoot a projectile.
+		/// </summary>
+		/// <param name="PendingProjectile">The type of the wanted projectile.</param>
+		/// <param name="gameTime">The current game time.</param>
+		/// <param name="Projectiles">The projectiles on-board.</param>
+		/// <returns>Whether the tank can shoot the bullet or not.</returns>
 		public virtual bool Shoot( Type PendingProjectile, GameTime gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			return true;

@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death that has everyone shrink to death.
+	/// </summary>
 	class ShrinkyDeath : SuddenDeath
 	{
 		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )

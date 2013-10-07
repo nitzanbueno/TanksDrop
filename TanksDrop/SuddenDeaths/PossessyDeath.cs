@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death that has everyone shoot uncontrollably and rapidly. Sometimes doesn't work so tanks disappear after 20 seconds.
+	/// </summary>
 	class PossessyDeath : SuddenDeath
 	{
 		bool didShoot;

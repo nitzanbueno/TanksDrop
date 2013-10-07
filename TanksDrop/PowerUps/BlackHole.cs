@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An appearing power-up that sucks all projectiles on board (with a limit of 50 projectiles) and shoots them at random directions.
+	/// </summary>
 	class BlackHole : AppearingPowerUp
 	{
 		protected Vector2 position;

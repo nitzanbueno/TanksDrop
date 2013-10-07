@@ -9,10 +9,13 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up that causes its taker to be able to pass through fences and bullets.
+	/// </summary>
 	class Ghost : TimedPowerUp
 	{
 		public Ghost( GameTime gameTime )
-			: base( gameTime, 10000 )
+			: base( gameTime, 3000 )
 		{
 		}
 

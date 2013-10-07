@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An appearing power-up that creates two portals. Tanks and bullets going through one portal will come out the other.
+	/// </summary>
 	class Portal : AppearingPowerUp
 	{
 		Vector2 portal1Pos;

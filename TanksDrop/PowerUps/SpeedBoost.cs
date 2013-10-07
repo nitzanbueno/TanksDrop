@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// Boosts the taker's speed by a specified factor (default 4)
+	/// </summary>
 	class SpeedBoost : TimedPowerUp
 	{
 		private float BoostFactor;
@@ -25,6 +28,10 @@ namespace TanksDrop.PowerUps
 			BoostFactor = boostFactor;
 		}
 
+		/// <summary>
+		/// Changes the speed boost factor.
+		/// </summary>
+		/// <param name="newBoostFactor">The new speed boost factor.</param>
 		public void SetBoostFactor( float newBoostFactor )
 		{
 			BoostFactor = newBoostFactor;
