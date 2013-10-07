@@ -14,7 +14,7 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	class Disabler : InstantPowerUp
 	{
-		public Disabler( GameTime gameTime )
+		public Disabler( TimeSpan gameTime )
 			: base( gameTime )
 		{
 		}
@@ -24,7 +24,7 @@ namespace TanksDrop.PowerUps
 			return Content.Load<Texture2D>( "Sprites\\Disabler" );
 		}
 
-		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			foreach ( TankObject t in Tanks )
 			{

@@ -14,7 +14,7 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	abstract class AppearingPowerUp : PowerUp
 	{
-		public AppearingPowerUp( GameTime gameTime, int duration )
+		public AppearingPowerUp( TimeSpan gameTime, int duration )
 			: base( gameTime, duration )
 		{
 		}
@@ -33,9 +33,9 @@ namespace TanksDrop.PowerUps
 		/// <param name="Projectiles">The projectiles on-board.</param>
 		/// <param name="Fences">The fences on-board.</param>
 		/// <returns>Whether the power-up should disappear or not.</returns>
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
-			TimeSpan now = gameTime.TotalGameTime;
+			TimeSpan now = gameTime;
 			if ( ( now - creationTime ).TotalMilliseconds > time )
 			{
 				return true;
@@ -48,7 +48,7 @@ namespace TanksDrop.PowerUps
 		/// </summary>
 		/// <param name="spriteBatch">The spriteBatch to draw on.</param>
 		/// <param name="gameTime">The current game time.</param>
-		public abstract void Draw( SpriteBatch spriteBatch, GameTime gameTime );
+		public abstract void Draw( SpriteBatch spriteBatch, TimeSpan gameTime );
 
 		/// <summary>
 		/// Updates the game's projectiles only.
@@ -56,7 +56,7 @@ namespace TanksDrop.PowerUps
 		/// <param name="gameTime">The current game time.</param>
 		/// <param name="Projectiles">The projectiles on-board.</param>
 		/// <returns>Whether to continue updating the projectiles or not.</returns>
-		public virtual bool UpdateProjectiles( GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		public virtual bool UpdateProjectiles( TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			return true;
 		}

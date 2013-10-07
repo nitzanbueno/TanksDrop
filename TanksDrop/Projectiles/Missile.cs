@@ -19,7 +19,7 @@ namespace TanksDrop.Projectiles
 		float BoomScale;
 		Random random;
 
-		public Missile( Vector2 position, float angle, GameTime gameTime, int width, int height, float factor, TankObject owner )
+		public Missile( Vector2 position, float angle, TimeSpan gameTime, int width, int height, float factor, TankObject owner )
 			: base( position, angle, gameTime, width, height, factor, owner )
 		{
 			random = new Random();
@@ -35,7 +35,7 @@ namespace TanksDrop.Projectiles
 
 		}
 
-		public Missile( Vector2 position, float angle, GameTime gameTime, int width, int height, float factor, TankObject owner, bool toExplode )
+		public Missile( Vector2 position, float angle, TimeSpan gameTime, int width, int height, float factor, TankObject owner, bool toExplode )
 			: base( position, angle, gameTime, width, height, factor, owner )
 		{
 			random = new Random();
@@ -50,7 +50,7 @@ namespace TanksDrop.Projectiles
 			get { return 0.5F; }
 		}
 
-		public override void Draw( GameTime gameTime, SpriteBatch spriteBatch )
+		public override void Draw( TimeSpan gameTime, SpriteBatch spriteBatch )
 		{
 			if ( isExploded )
 			{
@@ -62,7 +62,7 @@ namespace TanksDrop.Projectiles
 			}
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
 		{
 			bool shouldBeDestroyed = false;
 			if ( !isExploded )
@@ -85,7 +85,7 @@ namespace TanksDrop.Projectiles
 				Explode( gameTime );
 			}
 
-			return isExploded && ( gameTime.TotalGameTime - explosionTime ).TotalMilliseconds > 2000;
+			return isExploded && ( gameTime - explosionTime ).TotalMilliseconds > 2000;
 		}
 
 		/// <summary>
@@ -101,10 +101,10 @@ namespace TanksDrop.Projectiles
 		/// Explodes. The size of the explosion is set by the BlastRadius setting.
 		/// </summary>
 		/// <param name="gameTime">The current game time.</param>
-		private void Explode( GameTime gameTime )
+		private void Explode( TimeSpan gameTime )
 		{
 			isExploded = true;
-			explosionTime = gameTime.TotalGameTime;
+			explosionTime = gameTime;
 		}
 
 		public override Texture2D LoadTex( ContentManager Content )

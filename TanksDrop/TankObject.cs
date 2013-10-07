@@ -185,7 +185,7 @@ namespace TanksDrop
 		{
 		}
 
-		public void Update( GameTime gameTime, KeyboardState key, KeyboardState oldkey, int width, int height, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GraphicsDevice gd )
+		public void Update( TimeSpan gameTime, KeyboardState key, KeyboardState oldkey, int width, int height, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GraphicsDevice gd )
 		{
 			if ( key.IsKeyDown( Keys.KeyPlace ) && oldkey.IsKeyUp( Keys.KeyPlace ) && ( PlacedFences < FenceLimit || FenceLimit < 0 ) )
 			{
@@ -237,10 +237,10 @@ namespace TanksDrop
 					*/
 					angle = ang;
 
-					if ( ( gameTime.TotalGameTime - LastShoot ).TotalMilliseconds > 2000 )
+					if ( ( gameTime - LastShoot ).TotalMilliseconds > 2000 )
 					{
 						Shoot( gameTime, width, height, Projectiles );
-						LastShoot = gameTime.TotalGameTime;
+						LastShoot = gameTime;
 					}
 					FilterMove( 5F, Fences, Pickups, gameTime );
 					return;
@@ -359,7 +359,7 @@ namespace TanksDrop
 			angle += angleFactor;
 		}
 
-		public void Shoot( GameTime gameTime, int width, int height, HashSet<ProjectileObject> Projectiles )
+		public void Shoot( TimeSpan gameTime, int width, int height, HashSet<ProjectileObject> Projectiles )
 		{
 			if ( powerUp == null || powerUp.Shoot( PendingProjectile, gameTime, Projectiles ) )
 			{
@@ -375,7 +375,7 @@ namespace TanksDrop
 			}
 		}
 
-		private void FilterMove( float factor, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		private void FilterMove( float factor, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			// First we stop any collision with fences,
 			float moveFactor = factor;
@@ -448,7 +448,7 @@ namespace TanksDrop
 			Scale = OS;
 		}
 
-		public bool AppendPowerUp( PowerUp powerUp, GameTime gameTime )
+		public bool AppendPowerUp( PowerUp powerUp, TimeSpan gameTime )
 		{
 			if ( powerUp is AppearingPowerUp )
 				return false;

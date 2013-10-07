@@ -13,12 +13,12 @@ namespace TanksDrop.SuddenDeaths
 	/// </summary>
 	class ShrinkyDeath : SuddenDeath
 	{
-		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )
+		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, TimeSpan gameTime )
 		{
 			return true;
 		}
 
-		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			foreach ( TankObject Tank in Tanks )
 			{

@@ -14,12 +14,12 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	class Minimize : TimedPowerUp
 	{
-		public Minimize( GameTime gameTime )
+		public Minimize( TimeSpan gameTime )
 			: base( gameTime, 10000 )
 		{
 		}
 
-		public Minimize( GameTime gameTime, int duration ) : base( gameTime, duration ) { }
+		public Minimize( TimeSpan gameTime, int duration ) : base( gameTime, duration ) { }
 
 		public override void DoPickup( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{

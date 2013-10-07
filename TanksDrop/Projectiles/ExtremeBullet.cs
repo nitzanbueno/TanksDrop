@@ -23,7 +23,7 @@ namespace TanksDrop.Projectiles
 		{
 		}
 
-		public ExtremeBullet( Vector2 position, float angle, GameTime gameTime, int width, int height, float factor, TankObject owner )
+		public ExtremeBullet( Vector2 position, float angle, TimeSpan gameTime, int width, int height, float factor, TankObject owner )
 			: base( position, angle, gameTime, width, height, factor, owner )
 		{
 		}
@@ -49,12 +49,12 @@ namespace TanksDrop.Projectiles
 			return tex;
 		}
 
-		public override void Draw( GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch )
+		public override void Draw( TimeSpan gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch )
 		{
 			spriteBatch.Draw( tex, Position, null, Color.Black, 0, new Vector2( 16, 16 ), Scale, SpriteEffects.None, 0.4F );
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
 		{
 			if ( Position.X + bWidth >= width || Position.X <= 0 || Position.Y + bHeight >= height || Position.Y <= 0 )
 			{

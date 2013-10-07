@@ -107,6 +107,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Menus\Menu.cs" />
+    <Compile Include="Menus\MenuButton.cs" />
+    <Compile Include="Menus\MenuKey.cs" />
+    <Compile Include="Menus\PauseMenu.cs" />
     <Compile Include="PowerUps\Accelerator.cs" />
     <Compile Include="PowerUps\AppearingPowerUp.cs" />
     <Compile Include="PowerUps\BlackHole.cs" />

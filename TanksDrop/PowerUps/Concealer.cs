@@ -21,7 +21,7 @@ namespace TanksDrop.PowerUps
 		KeySet origKeys;
 		TankObject SwitchedTank;
 
-		public Concealer( GameTime gameTime )
+		public Concealer( TimeSpan gameTime )
 			: base( gameTime, 10000 )
 		{
 			toSwitch = random.Next( 2 ) == 0;

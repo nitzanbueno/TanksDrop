@@ -44,7 +44,7 @@ namespace TanksDrop.Projectiles
 			get { return 0.25F; }
 		}
 
-		public BasicBullet( Vector2 position, float angle, GameTime gameTime, int width, int height, float factor, TankObject owner )
+		public BasicBullet( Vector2 position, float angle, TimeSpan gameTime, int width, int height, float factor, TankObject owner )
 			: base( position, angle, gameTime, width, height, factor, owner )
 		{
 		}
@@ -55,12 +55,12 @@ namespace TanksDrop.Projectiles
 			return tex;
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
 		{
 			return UpdatePhysics( gameTime, Tanks, Fences ) ? true : base.Update( gameTime, Tanks, Fences, Pickups );
 		}
 
-		public override void Draw( GameTime gameTime, SpriteBatch spriteBatch )
+		public override void Draw( TimeSpan gameTime, SpriteBatch spriteBatch )
 		{
 			spriteBatch.Draw( tex, Position, null, Color.Black, 0F, new Vector2( 16, 16 ), Scale, SpriteEffects.None, 0 );
 		}

@@ -21,21 +21,21 @@ namespace TanksDrop.PowerUps
 		protected TimeSpan creationTime;
 		protected TimeSpan takeTime;
 
-		public PowerUp( GameTime gameTime, int duration )
+		public PowerUp( TimeSpan gameTime, int duration )
 		{
 			random = new Random();
 			Taken = false;
 			Owner = null;
-			creationTime = gameTime.TotalGameTime;
+			creationTime = gameTime;
 			time = duration;
 		}
 
-		public PowerUp( TankObject owner, GameTime gameTime )
+		public PowerUp( TankObject owner, TimeSpan gameTime )
 		{
 			random = new Random();
 			Taken = true;
 			Owner = owner;
-			creationTime = gameTime.TotalGameTime;
+			creationTime = gameTime;
 		}
 
 		/// <summary>
@@ -43,11 +43,11 @@ namespace TanksDrop.PowerUps
 		/// </summary>
 		/// <param name="Taker">The tank that ran over me.</param>
 		/// <param name="gameTime">The current game time, used to determine when to make me disappear.</param>
-		public virtual void Take( TankObject Taker, GameTime gameTime )
+		public virtual void Take( TankObject Taker, TimeSpan gameTime )
 		{
 			Owner = Taker;
 			Taken = true;
-			takeTime = gameTime.TotalGameTime;
+			takeTime = gameTime;
 		}
 
 		/// <summary>
@@ -58,7 +58,7 @@ namespace TanksDrop.PowerUps
 		/// <param name="Projectiles">All moving projectiles on the board.</param> 
 		/// <param name="Fences">All fences on the board.</param>
 		/// <returns>True if the power-up should be removed, otherwise false.</returns>
-		public abstract bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences );
+		public abstract bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences );
 
 		/// <summary>
 		/// Changes the timed or appearing power-up's duration.
@@ -114,7 +114,7 @@ namespace TanksDrop.PowerUps
 		/// <param name="gameTime">The current game time.</param>
 		/// <param name="Projectiles">The projectiles on-board.</param>
 		/// <returns>Whether the tank can shoot the bullet or not.</returns>
-		public virtual bool Shoot( Type PendingProjectile, GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		public virtual bool Shoot( Type PendingProjectile, TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			return true;
 		}

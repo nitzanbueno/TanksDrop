@@ -15,12 +15,12 @@ namespace TanksDrop.SuddenDeaths
 	{
 		bool didShoot;
 
-		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )
+		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, TimeSpan gameTime )
 		{
 			return true;
 		}
 
-		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			int width = 0;
 			int height = 0;
@@ -34,7 +34,7 @@ namespace TanksDrop.SuddenDeaths
 				}
 			}
 
-			TimeSpan passedTime = ( gameTime.TotalGameTime - startTime );
+			TimeSpan passedTime = ( gameTime - startTime );
 			if ( passedTime.TotalMilliseconds % 200 < 10 && !didShoot )
 			{
 				foreach ( TankObject Tank in Tanks )

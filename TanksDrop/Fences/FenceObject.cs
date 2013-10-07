@@ -21,14 +21,14 @@ namespace TanksDrop
 		public float angle;
 		protected Texture2D blank;
 
-		public FenceObject( Vector2 p1, Vector2 p2, float width, TankObject owner, GameTime gameTime, GraphicsDevice gd )
+		public FenceObject( Vector2 p1, Vector2 p2, float width, TankObject owner, TimeSpan gameTime, GraphicsDevice gd )
 		{
 			Point1 = p1;
 			Point2 = p2;
 			Width = width;
 			Owner = owner;
 			color = Owner.RGBColor;
-			gt = gameTime.TotalGameTime;
+			gt = gameTime;
 			angle = ( MathHelper.ToDegrees( Owner.Rotation ) + 90 ) % 360;
 			blank = new Texture2D( gd, 2, 2, false, SurfaceFormat.Color );
 			blank.SetData( Enumerable.Repeat<Color>( Color.White, 4 ).ToArray<Color>() );
@@ -55,9 +55,9 @@ namespace TanksDrop
 		/// </summary>
 		/// <param name="time">The current game time.</param>
 		/// <returns>If true, remove this fence, otherwise false.</returns>
-		public virtual bool Update( GameTime time )
+		public virtual bool Update( TimeSpan time )
 		{
-			if ( ( ( time.TotalGameTime - gt ).TotalMilliseconds > Owner.FenceTime && Owner.FenceTime >= 0 ) )
+			if ( ( ( time - gt ).TotalMilliseconds > Owner.FenceTime && Owner.FenceTime >= 0 ) )
 			{
 				Owner.PlacedFences--;
 				return true;

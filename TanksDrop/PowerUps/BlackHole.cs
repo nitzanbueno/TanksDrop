@@ -20,7 +20,7 @@ namespace TanksDrop.PowerUps
 		protected float speed;
 		protected HashSet<ProjectileObject> suckedProjectiles;
 
-		public BlackHole( GameTime gameTime )
+		public BlackHole( TimeSpan gameTime )
 			: base( gameTime, -1 )
 		{
 			speed = 0.1F;
@@ -32,12 +32,12 @@ namespace TanksDrop.PowerUps
 			tex = Content.Load<Texture2D>( "Sprites\\BlackHole" );
 		}
 
-		public override void Draw( SpriteBatch spriteBatch, GameTime gameTime )
+		public override void Draw( SpriteBatch spriteBatch, TimeSpan gameTime )
 		{
 			spriteBatch.Draw( tex, position, null, Color.White, 0, new Vector2( 16, 16 ), 1, SpriteEffects.None, 0 );
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			if ( position == Vector2.Zero )
 			{
@@ -47,7 +47,7 @@ namespace TanksDrop.PowerUps
 			return didExplode;
 		}
 
-		public override bool UpdateProjectiles( GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		public override bool UpdateProjectiles( TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			if ( speed < 30 )
 			{
@@ -83,7 +83,7 @@ namespace TanksDrop.PowerUps
 			return true;
 		}
 
-		private void Explode( GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		private void Explode( TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			didExplode = true;
 			foreach ( ProjectileObject Proj in suckedProjectiles )

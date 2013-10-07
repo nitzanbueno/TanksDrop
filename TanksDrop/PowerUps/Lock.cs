@@ -24,19 +24,19 @@ namespace TanksDrop.PowerUps
 
 		TankObject OrigOwner;
 
-		public Lock( GameTime gameTime )
+		public Lock( TimeSpan gameTime )
 			: base( gameTime, 3000 )
 		{
 		}
 
-		public override void Take( TankObject Taker, GameTime gameTime )
+		public override void Take( TankObject Taker, TimeSpan gameTime )
 		{
 			OrigOwner = Taker;
 			Taken = true;
-			takeTime = gameTime.TotalGameTime;
+			takeTime = gameTime;
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			if ( Taken && Owner == null )
 			{
@@ -47,7 +47,7 @@ namespace TanksDrop.PowerUps
 				Owner = newOwner;
 				OrigOwner.powerUp = null;
 				OrigOwner = null;
-				takeTime = gameTime.TotalGameTime;
+				takeTime = gameTime;
 			}
 			return base.Update( gameTime, Tanks, Projectiles, Fences );
 		}
@@ -62,7 +62,7 @@ namespace TanksDrop.PowerUps
 			// Do Nothing
 		}
 
-		public override bool Shoot( Type PendingProjectile, GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		public override bool Shoot( Type PendingProjectile, TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			return false;
 		}

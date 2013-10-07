@@ -14,7 +14,7 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	abstract class TimedPowerUp : PowerUp
 	{
-		public TimedPowerUp( GameTime gameTime, int duration )
+		public TimedPowerUp( TimeSpan gameTime, int duration )
 			: base( gameTime, duration )
 		{
 		}
@@ -25,9 +25,9 @@ namespace TanksDrop.PowerUps
 		/// <param name="Content">Content to load texture from.</param>
 		public abstract Texture2D LoadTex( ContentManager Content );
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
-			TimeSpan now = gameTime.TotalGameTime;
+			TimeSpan now = gameTime;
 			if ( Taken )
 			{
 				DoPickup( Tanks, Projectiles, Fences );
@@ -44,7 +44,7 @@ namespace TanksDrop.PowerUps
 
 		public abstract void Revert();
 
-		public virtual void Draw( SpriteBatch spriteBatch, GameTime gameTime )
+		public virtual void Draw( SpriteBatch spriteBatch, TimeSpan gameTime )
 		{
 		}
 

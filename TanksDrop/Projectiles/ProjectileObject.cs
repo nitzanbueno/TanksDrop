@@ -57,12 +57,12 @@ namespace TanksDrop.Projectiles
 		protected float duration;
 		public bool doesCount;
 
-		public ProjectileObject( Vector2 position, float angle, GameTime gameTime, int width, int height, float factor, TankObject owner )
+		public ProjectileObject( Vector2 position, float angle, TimeSpan gameTime, int width, int height, float factor, TankObject owner )
 		{
 			this.Position = position;
 			this.speed = factor;
 			this.angle = angle;
-			originalTime = gameTime.TotalGameTime;
+			originalTime = gameTime;
 			this.width = width;
 			this.height = height;
 			Owner = owner;
@@ -75,7 +75,7 @@ namespace TanksDrop.Projectiles
 			doesCount = true;
 		}
 
-		protected bool UpdatePhysics( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences )
+		protected bool UpdatePhysics( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences )
 		{
 			if ( Position.X + bWidth >= width || Position.X <= 0 )
 			{
@@ -116,14 +116,14 @@ namespace TanksDrop.Projectiles
 			return false;
 		}
 
-		public virtual bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
+		public virtual bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
 		{
-			return ( ( gameTime.TotalGameTime - originalTime ).TotalMilliseconds > duration && duration > 0 );
+			return ( ( gameTime - originalTime ).TotalMilliseconds > duration && duration > 0 );
 		}
 
 		public abstract Texture2D LoadTex( ContentManager Content );
 
-		public abstract void Draw( GameTime gameTime, SpriteBatch spriteBatch );
+		public abstract void Draw( TimeSpan gameTime, SpriteBatch spriteBatch );
 
 		public void Twist( float newAngle )
 		{

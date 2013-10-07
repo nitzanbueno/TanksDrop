@@ -17,12 +17,12 @@ namespace TanksDrop.PowerUps
 	{
 		private float BoostFactor;
 
-		public SpeedBoost( GameTime gameTime )
+		public SpeedBoost( TimeSpan gameTime )
 			: base( gameTime, 5000 )
 		{
 		}
 
-		public SpeedBoost( GameTime gameTime, float boostFactor )
+		public SpeedBoost( TimeSpan gameTime, float boostFactor )
 			: base( gameTime, 5000 )
 		{
 			BoostFactor = boostFactor;

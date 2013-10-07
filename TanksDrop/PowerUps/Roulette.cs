@@ -14,7 +14,7 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	class Roulette : InstantPowerUp
 	{
-		public Roulette( GameTime gameTime )
+		public Roulette( TimeSpan gameTime )
 			: base( gameTime )
 		{
 
@@ -25,7 +25,7 @@ namespace TanksDrop.PowerUps
 			return Content.Load<Texture2D>( "Sprites\\Roulette" );
 		}
 
-		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			TankObject ChosenTank = Tanks[ random.Next( Tanks.Length ) ];
 			ChosenTank.IsInGame = !ChosenTank.IsInGame;

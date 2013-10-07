@@ -39,26 +39,26 @@ namespace TanksDrop
 		}
 
 
-		public Pickup( int width, int height, GameTime gameTime, int ExistanceTime, Object carrier, ContentManager Content )
+		public Pickup( int width, int height, TimeSpan gameTime, int ExistanceTime, Object carrier, ContentManager Content )
 		{
 			TotalTime = ExistanceTime;
 			random = new Random();
 			Position = new Vector2( random.Next( width ), random.Next( height ) );
 			Carrier = carrier;
 			GetCarrierData( Content );
-			originalTime = gameTime.TotalGameTime;
+			originalTime = gameTime;
 		}
 
-		public Pickup( int width, int height, GameTime gameTime, int ExistanceTime, Type carrier, ContentManager Content )
+		public Pickup( int width, int height, TimeSpan gameTime, int ExistanceTime, Type carrier, ContentManager Content )
 		{
 			TotalTime = ExistanceTime;
 			random = new Random();
 			Position = new Vector2( random.Next( width ), random.Next( height ) );
 			GetCarrierData( carrier, gameTime, Content );
-			originalTime = gameTime.TotalGameTime;
+			originalTime = gameTime;
 		}
 
-		private void GetCarrierData( Type carrier, GameTime gameTime, ContentManager Content )
+		private void GetCarrierData( Type carrier, TimeSpan gameTime, ContentManager Content )
 		{
 			CarrierType = carrier;
 			if ( carrier.IsSubclassOf( typeof( ProjectileObject ) ) )
@@ -104,12 +104,12 @@ namespace TanksDrop
 			else throw new ArgumentException( "Object given couldn't be picked up." );
 		}
 
-		public bool Update( GameTime gameTime )
+		public bool Update( TimeSpan gameTime )
 		{
-			return ( ( gameTime.TotalGameTime - originalTime ).TotalMilliseconds > TotalTime && TotalTime > 0 ) || Taken;
+			return ( ( gameTime - originalTime ).TotalMilliseconds > TotalTime && TotalTime > 0 ) || Taken;
 		}
 
-		public void Take( TankObject taker, GameTime gameTime )
+		public void Take( TankObject taker, TimeSpan gameTime )
 		{
 			if ( !Taken )
 			{

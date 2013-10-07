@@ -14,7 +14,7 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	abstract class InstantPowerUp : PowerUp
 	{
-		public InstantPowerUp( GameTime gameTime )
+		public InstantPowerUp( TimeSpan gameTime )
 			: base( gameTime, 1 )
 		{
 		}
@@ -27,7 +27,7 @@ namespace TanksDrop.PowerUps
 		/// <param name="Projectiles">The projectiles on-board.</param>
 		/// <param name="Fences">The fences on-board.</param>
 		/// <returns>Whether the power-up should disappear or not.</returns>
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			if ( Taken )
 			{
@@ -51,6 +51,6 @@ namespace TanksDrop.PowerUps
 		/// <param name="Tanks">The playing tanks.</param>
 		/// <param name="Projectiles">The projectiles on-board.</param>
 		/// <param name="Fences">The fences on-board.</param>
-		public abstract void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime );
+		public abstract void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime );
 	}
 }

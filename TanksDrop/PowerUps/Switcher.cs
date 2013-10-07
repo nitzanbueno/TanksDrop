@@ -15,19 +15,19 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	class Switcher : InstantPowerUp
 	{
-		public Switcher( GameTime gameTime ) : base( gameTime ) { }
+		public Switcher( TimeSpan gameTime ) : base( gameTime ) { }
 
 		public override Texture2D LoadTex( ContentManager Content )
 		{
 			return Content.Load<Texture2D>( "Sprites\\Switcher" );
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			return base.Update( gameTime, Tanks, Projectiles, Fences );
 		}
 
-		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			TankObject ClosestTank = Owner;
 			float ShortestDistance = float.PositiveInfinity;

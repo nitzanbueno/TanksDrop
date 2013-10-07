@@ -33,7 +33,7 @@ namespace TanksDrop.PowerUps
 		/// Constructs a new accelerator object.
 		/// </summary>
 		/// <param name="gameTime">The current game time.</param>
-		public Accelerator( GameTime gameTime )
+		public Accelerator( TimeSpan gameTime )
 			: base( gameTime, 10000 )
 		{
 			TanksToAffect = new HashSet<Tuple<TankObject, TimeSpan>>();
@@ -44,7 +44,7 @@ namespace TanksDrop.PowerUps
 			tex = Content.Load<Texture2D>( "Sprites\\Accelerator" );
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			if ( Position == Vector2.Zero )
 			{
@@ -52,7 +52,7 @@ namespace TanksDrop.PowerUps
 			}
 			foreach ( TankObject t in Tanks )
 			{
-				var T = new Tuple<TankObject, TimeSpan>( t, gameTime.TotalGameTime );
+				var T = new Tuple<TankObject, TimeSpan>( t, gameTime );
 				bool i = TanksToAffect.Any<Tuple<TankObject, TimeSpan>>
 					( x =>
 					{
@@ -68,7 +68,7 @@ namespace TanksDrop.PowerUps
 			HashSet<Tuple<TankObject, TimeSpan>> TanksToRemove = new HashSet<Tuple<TankObject, TimeSpan>>();
 			foreach ( var t in TanksToAffect )
 			{
-				if ( ( gameTime.TotalGameTime - t.Item2 ).TotalMilliseconds > 100 )
+				if ( ( gameTime - t.Item2 ).TotalMilliseconds > 100 )
 				{
 					t.Item1.Speed = t.Item1.OSP;
 					TanksToRemove.Add( t );
@@ -86,7 +86,7 @@ namespace TanksDrop.PowerUps
 			return false;
 		}
 
-		public override void Draw( SpriteBatch spriteBatch, GameTime gameTime )
+		public override void Draw( SpriteBatch spriteBatch, TimeSpan gameTime )
 		{
 			spriteBatch.Draw( tex, Position, null, Color.White, 0, new Vector2( 16, 16 ), 1, SpriteEffects.None, 0.5F );
 		}

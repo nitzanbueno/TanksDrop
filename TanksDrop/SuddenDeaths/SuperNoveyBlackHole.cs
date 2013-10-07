@@ -13,11 +13,11 @@ namespace TanksDrop.SuddenDeaths
 	/// </summary>
 	class SuperNoveyBlackHole : BlackHole
 	{
-		public SuperNoveyBlackHole( GameTime gameTime ) : base( gameTime )
+		public SuperNoveyBlackHole( TimeSpan gameTime ) : base( gameTime )
 		{
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			if ( position == Vector2.Zero )
 			{
@@ -26,7 +26,7 @@ namespace TanksDrop.SuddenDeaths
 			return didExplode;
 		}
 
-		public override bool UpdateProjectiles( GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		public override bool UpdateProjectiles( TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			if ( speed < 30 )
 			{
@@ -62,7 +62,7 @@ namespace TanksDrop.SuddenDeaths
 			return true;
 		}
 
-		private void Explode( GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		private void Explode( TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			didExplode = true;
 			float ang = 0;

@@ -14,13 +14,13 @@ namespace TanksDrop.SuddenDeaths
 	{
 		bool didSuperNova;
 
-		public override void Initialize( GameTime gameTime, Microsoft.Xna.Framework.Content.ContentManager Content )
+		public override void Initialize( TimeSpan gameTime, Microsoft.Xna.Framework.Content.ContentManager Content )
 		{
 			didSuperNova = false;
 			base.Initialize( gameTime, Content );
 		}
 
-		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{/*
 			if ( !didSuperNova )
 			{
@@ -50,7 +50,7 @@ namespace TanksDrop.SuddenDeaths
 			return true;
 		}
 
-		public override bool Draw( Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<Projectiles.ProjectileObject> Projectiles, HashSet<FenceObject> Fences, Microsoft.Xna.Framework.GameTime gameTime )
+		public override bool Draw( Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, TimeSpan gameTime )
 		{
 			return true;
 		}

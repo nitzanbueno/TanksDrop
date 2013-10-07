@@ -14,7 +14,7 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	class Ghost : TimedPowerUp
 	{
-		public Ghost( GameTime gameTime )
+		public Ghost( TimeSpan gameTime )
 			: base( gameTime, 3000 )
 		{
 		}

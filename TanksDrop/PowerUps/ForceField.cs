@@ -17,7 +17,7 @@ namespace TanksDrop.PowerUps
 	{
 		Texture2D Aura;
 
-		public ForceField( GameTime gameTime )
+		public ForceField( TimeSpan gameTime )
 			: base( gameTime, 5000 )
 		{
 		}
@@ -49,7 +49,7 @@ namespace TanksDrop.PowerUps
 			//
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			return base.Update( gameTime, Tanks, Projectiles, Fences );
 		}
@@ -73,7 +73,7 @@ namespace TanksDrop.PowerUps
 			return false;
 		}
 
-		public override void Draw( SpriteBatch spriteBatch, GameTime gameTime )
+		public override void Draw( SpriteBatch spriteBatch, TimeSpan gameTime )
 		{
 			Color c = Color.White;
 			if ( Taken )

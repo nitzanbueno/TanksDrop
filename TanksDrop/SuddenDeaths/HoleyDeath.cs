@@ -19,7 +19,7 @@ namespace TanksDrop.SuddenDeaths
 		float speed;
 		float scale;
 
-		public override void Initialize( GameTime gameTime, ContentManager Content )
+		public override void Initialize( TimeSpan gameTime, ContentManager Content )
 		{
 			BlackHoleTex = Content.Load<Texture2D>( "Sprites\\BlackHole" );
 			scale = 5;
@@ -27,7 +27,7 @@ namespace TanksDrop.SuddenDeaths
 			base.Initialize( gameTime, Content );
 		}
 
-		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			speed += 0.1F;
 			if ( Position == Vector2.Zero )
@@ -111,7 +111,7 @@ namespace TanksDrop.SuddenDeaths
 			return false;
 		}
 
-		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )
+		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, TimeSpan gameTime )
 		{
 			if ( BlackHoleTex != null && Position != Vector2.Zero )
 			{

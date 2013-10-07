@@ -18,7 +18,7 @@ namespace TanksDrop.PowerUps
 		int width;
 		int height;
 
-		public Tripler( GameTime gameTime )
+		public Tripler( TimeSpan gameTime )
 			: base( gameTime, 10000 )
 		{
 		}
@@ -38,7 +38,7 @@ namespace TanksDrop.PowerUps
 			//
 		}
 
-		public override bool Shoot( Type PendingProjectile, GameTime gameTime, HashSet<ProjectileObject> Projectiles )
+		public override bool Shoot( Type PendingProjectile, TimeSpan gameTime, HashSet<ProjectileObject> Projectiles )
 		{
 			if ( width == 0 && height == 0 )
 			{

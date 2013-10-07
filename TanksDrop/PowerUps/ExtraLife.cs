@@ -21,7 +21,7 @@ namespace TanksDrop.PowerUps
 		Texture2D Halo;
 		float rot;
 
-		public ExtraLife( GameTime gameTime )
+		public ExtraLife( TimeSpan gameTime )
 			: base( gameTime, int.MaxValue )
 		{
 		}
@@ -42,7 +42,7 @@ namespace TanksDrop.PowerUps
 			//
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<Projectiles.ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<Projectiles.ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			rot += MathHelper.ToRadians( 10 );
 			base.Update( gameTime, Tanks, Projectiles, Fences );
@@ -72,7 +72,7 @@ namespace TanksDrop.PowerUps
 			}
 		}
 
-		public override void Draw( SpriteBatch spriteBatch, GameTime gameTime )
+		public override void Draw( SpriteBatch spriteBatch, TimeSpan gameTime )
 		{
 			if ( Taken )
 			{

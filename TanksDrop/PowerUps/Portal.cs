@@ -36,16 +36,16 @@ namespace TanksDrop.PowerUps
 		int Frame;
 		TimeSpan LastFrameUpdate;
 
-		public Portal( GameTime gameTime ) : base( gameTime, 10000 ) { }
+		public Portal( TimeSpan gameTime ) : base( gameTime, 10000 ) { }
 
-		public Portal( GameTime gameTime, int duration ) : base( gameTime, duration ) { }
+		public Portal( TimeSpan gameTime, int duration ) : base( gameTime, duration ) { }
 
 		public override void LoadTex( ContentManager Content )
 		{
 			texMap = Content.Load<Texture2D>( "Sprites\\PortalMap" );
 		}
 
-		public override void Draw( SpriteBatch spriteBatch, GameTime gameTime )
+		public override void Draw( SpriteBatch spriteBatch, TimeSpan gameTime )
 		{
 			spriteBatch.Draw( texMap, portal1Pos, new Rectangle( Frame * 32, 0, 32, 32 ), Color.White, 0, Origin / Scale, Scale, SpriteEffects.None, 0 );
 			spriteBatch.Draw( texMap, portal2Pos, new Rectangle( Frame * 32, 32, 32, 32 ), Color.White, 0, Origin / Scale, Scale, SpriteEffects.None, 0 );
@@ -53,7 +53,7 @@ namespace TanksDrop.PowerUps
 
 		bool didTankEnter;
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
 		{
 			if ( portal1Pos == Vector2.Zero && portal2Pos == Vector2.Zero )
 			{
@@ -73,11 +73,11 @@ namespace TanksDrop.PowerUps
 				portal1Bounds = new Rectangle( ( int )( portal1Pos.X - Origin.X ), ( int )( portal1Pos.Y - Origin.Y ), ( int )( 32 * Scale ), ( int )( 32 * Scale ) );
 				portal2Bounds = new Rectangle( ( int )( portal2Pos.X - Origin.X ), ( int )( portal2Pos.Y - Origin.Y ), ( int )( 32 * Scale ), ( int )( 32 * Scale ) );
 			}
-			if ( ( gameTime.TotalGameTime - LastFrameUpdate ).TotalMilliseconds > 500 )
+			if ( ( gameTime - LastFrameUpdate ).TotalMilliseconds > 500 )
 			{
 				Frame += 1;
 				Frame %= 4;
-				LastFrameUpdate = gameTime.TotalGameTime;
+				LastFrameUpdate = gameTime;
 			}
 			bool didTankEnterNow = false;
 			foreach ( TankObject Tank in Tanks )

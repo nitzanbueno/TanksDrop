@@ -35,7 +35,7 @@ namespace TanksDrop.SuddenDeaths
 			yAdvances = new List<float>();
 		}
 
-		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )
+		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, TimeSpan gameTime )
 		{
 			for ( int i = 0; i < awesomeFacePositions.Count; i++ )
 			{
@@ -45,9 +45,9 @@ namespace TanksDrop.SuddenDeaths
 			return false;
 		}
 
-		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
-			double millisecs = ( gameTime.TotalGameTime - startTime ).TotalMilliseconds;
+			double millisecs = ( gameTime - startTime ).TotalMilliseconds;
 			if ( millisecs > 1000 * awesomeFacePositions.Count && millisecs < 10000 && millisecs > 1000 )
 			{
 				awesomeFacePositions.Add( new Vector2( random.Next( 1000 ), random.Next( 1000 ) ) );
@@ -60,7 +60,7 @@ namespace TanksDrop.SuddenDeaths
 			{
 				Add( 10 );
 			}
-			if ( ( gameTime.TotalGameTime - startTime ).TotalMilliseconds > 12000 )
+			if ( ( gameTime - startTime ).TotalMilliseconds > 12000 )
 			{
 				foreach ( TankObject Tank in Tanks )
 				{
@@ -81,7 +81,7 @@ namespace TanksDrop.SuddenDeaths
 			}
 		}
 
-		public override void Initialize( GameTime gameTime, ContentManager Content )
+		public override void Initialize( TimeSpan gameTime, ContentManager Content )
 		{
 			base.Initialize( gameTime, Content );
 			awesomeFace = Content.Load<Texture2D>( "Sprites\\Face" );

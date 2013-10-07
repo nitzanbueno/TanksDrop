@@ -14,13 +14,13 @@ namespace TanksDrop.PowerUps
 	/// </summary>
 	class Deflector : InstantPowerUp
 	{
-		public Deflector( GameTime gameTime )
+		public Deflector( TimeSpan gameTime )
 			: base( gameTime )
 		{
 			time = 1;
 		}
 
-		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			foreach ( ProjectileObject Proj in Projectiles )
 			{

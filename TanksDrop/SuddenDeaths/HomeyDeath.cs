@@ -17,7 +17,7 @@ namespace TanksDrop.SuddenDeaths
 		int height;
 		TankObject MyTank;
 
-		public override void Initialize( GameTime gameTime, ContentManager Content )
+		public override void Initialize( TimeSpan gameTime, ContentManager Content )
 		{
 			MyTank = new TankObject( );
 			base.Initialize( gameTime, Content );
@@ -25,7 +25,7 @@ namespace TanksDrop.SuddenDeaths
 
 		bool didShoot;
 
-		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
+		public override bool Update( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, TimeSpan gameTime )
 		{
 			if ( width == 0 || height == 0 )
 			{
@@ -39,7 +39,7 @@ namespace TanksDrop.SuddenDeaths
 				}
 			}
 
-			if ( ( gameTime.TotalGameTime - startTime ).TotalMilliseconds % 2000 < 10 && !didShoot )
+			if ( ( gameTime - startTime ).TotalMilliseconds % 2000 < 10 && !didShoot )
 			{
 				Projectiles.Add( new HomingBullet( new Vector2( 10, 10 ), 45, gameTime, width, height, 5, MyTank ) );
 				Projectiles.Add( new HomingBullet( new Vector2( width - 10, 10 ), 135, gameTime, width, height, 5, MyTank ) );
@@ -53,7 +53,7 @@ namespace TanksDrop.SuddenDeaths
 			return true;
 		}
 
-		public override bool Draw( Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<Projectiles.ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )
+		public override bool Draw( Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<Projectiles.ProjectileObject> Projectiles, HashSet<FenceObject> Fences, TimeSpan gameTime )
 		{
 			return true;
 		}

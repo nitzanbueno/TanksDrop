@@ -13,7 +13,7 @@ namespace TanksDrop
 	/// </summary>
 	class BasicFence : FenceObject
 	{
-		public BasicFence( Vector2 p1, Vector2 p2, float width, TankObject owner, GameTime gameTime, GraphicsDevice gd ) : base( p1, p2, width, owner, gameTime, gd )
+		public BasicFence( Vector2 p1, Vector2 p2, float width, TankObject owner, TimeSpan gameTime, GraphicsDevice gd ) : base( p1, p2, width, owner, gameTime, gd )
 		{
 		}
 

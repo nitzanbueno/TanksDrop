@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using TanksDrop.SuddenDeaths;
 using TanksDrop.PowerUps;
 using TanksDrop.Projectiles;
+using TanksDrop.Menus;
 
 namespace TanksDrop
 {
@@ -35,7 +36,7 @@ namespace TanksDrop
 			ScrHeight = height;
 		}
 
-		public override void Draw( GameTime gameTime, SpriteBatch spriteBatch )
+		public override void Draw( TimeSpan gameTime, SpriteBatch spriteBatch )
 		{
 		}
 
@@ -48,7 +49,7 @@ namespace TanksDrop
 			return tex;
 		}
 
-		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
 		{
 			return false;
 		}
@@ -74,6 +75,8 @@ namespace TanksDrop
 		SpriteFont ScoreFont;
 		Texture2D blank;
 		Random random;
+
+		public Menu currentMenu;
 
 		// Arguments
 		private int NumOfPlayers;
@@ -379,17 +382,22 @@ namespace TanksDrop
 		TimeSpan Round;
 		SuddenDeath roundDeath;
 
+		TimeSpan gameTime;
+
 		/// <summary>
 		/// Allows the game to run logic such as updating the world,
 		/// checking for collisions, gathering input, and playing audio.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update( GameTime gameTime )
+		protected override void Update( GameTime givenGameTime )
 		{
 			KeyboardState key = Keyboard.GetState();
 			// Allows the game to exit
 			if ( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed || key.IsKeyDown( Keys.Escape ) )
 				this.Exit();
+
+			MouseState mouse = Mouse.GetState();
+
 			if ( key.IsKeyDown( Keys.D3 ) )
 			{
 				IsFixedTimeStep = true;
@@ -399,13 +407,22 @@ namespace TanksDrop
 			{
 				IsFixedTimeStep = false;
 			}
+			if ( key.IsKeyDown( Keys.P ) )
+			{
+				currentMenu = new PauseMenu( this, Content );
+			}
+			if ( currentMenu != null && !currentMenu.Update( gameTime, key, mouse ) )
+			{
+				return;
+			}
+			gameTime += givenGameTime.ElapsedGameTime;
 			bool shouldUpdate = roundDeath == null || roundDeath.Update( Tanks, Projectiles, Fences, Pickups, gameTime );
 			if ( !shouldUpdate )
 			{
 				CheckGeneralGame( gameTime, ref key, false );
 				return;
 			}
-			if ( gameTime.TotalGameTime.TotalMilliseconds % PickupTime < 50 )
+			if ( gameTime.TotalMilliseconds % PickupTime < 50 )
 			{
 				if ( !DidPlacePickup )
 				{
@@ -423,13 +440,13 @@ namespace TanksDrop
 				Reset( false, gameTime );
 			}
 
-			TimeSpan previousTime = gameTime.TotalGameTime - gameTime.ElapsedGameTime;
+			TimeSpan previousTime = gameTime - givenGameTime.ElapsedGameTime;
 			float millisecsOfElapsation = 175;
 			/*if ( key.IsKeyDown( Keys.LeftShift ) )
 			{
 				millisecsOfElapsation /= 4;
 			}*/
-			if ( gameTime.TotalGameTime.Milliseconds % millisecsOfElapsation < previousTime.Milliseconds % millisecsOfElapsation )
+			if ( gameTime.Milliseconds % millisecsOfElapsation < previousTime.Milliseconds % millisecsOfElapsation )
 			{
 				frame += 1;
 				frame %= 8;
@@ -485,12 +502,11 @@ namespace TanksDrop
 			}
 
 			CheckGeneralGame( gameTime, ref key, true );
-
 			oldkey = key;
-			base.Update( gameTime );
+			base.Update( givenGameTime );
 		}
 
-		private void CheckGeneralGame( GameTime gameTime, ref KeyboardState key, bool shouldUpdateTanks )
+		private void CheckGeneralGame( TimeSpan gameTime, ref KeyboardState key, bool shouldUpdateTanks )
 		{
 			bool IsATankOut = false;
 			foreach ( TankObject tank in Tanks )
@@ -531,20 +547,20 @@ namespace TanksDrop
 				if ( HowManyIn <= 1 )
 				{
 					IsGameDone = true;
-					CountDown = gameTime.TotalGameTime;
+					CountDown = gameTime;
 				}
 			}
-			if ( IsGameDone && ( ( gameTime.TotalGameTime - CountDown ).TotalMilliseconds > TimeDelay || TimeDelay <= 0 ) )
+			if ( IsGameDone && ( ( gameTime - CountDown ).TotalMilliseconds > TimeDelay || TimeDelay <= 0 ) )
 			{
 				Reset( true, gameTime );
 			}
-			else if ( ( gameTime.TotalGameTime - Round ).Seconds >= SuddenDeathTime && SuddenDeathTime > 0 && roundDeath == null )
+			else if ( ( gameTime - Round ).Seconds >= SuddenDeathTime && SuddenDeathTime > 0 && roundDeath == null )
 			{
 				BeginSuddenDeath( gameTime );
 			}
 		}
 
-		private void PlacePickup( GameTime gameTime, bool notfirst )
+		private void PlacePickup( TimeSpan gameTime, bool notfirst )
 		{
 			if ( PickupableOptions.Length == 0 ) return;
 			Type pickup = PickupableOptions[ random.Next( PickupableOptions.Length ) ];
@@ -598,7 +614,7 @@ namespace TanksDrop
 		/// <param name="powerUp">The power-up to process</param>
 		/// <param name="gameTime">The current game time</param>
 		/// <returns>The processed power-up.</returns>
-		private PowerUp ProcessPowerUp( PowerUp powerUp, GameTime gameTime )
+		private PowerUp ProcessPowerUp( PowerUp powerUp, TimeSpan gameTime )
 		{
 			PowerUp processedPowerUp = powerUp;
 			if ( powerUp is SpeedBoost )
@@ -609,7 +625,7 @@ namespace TanksDrop
 			return processedPowerUp;
 		}
 
-		private void BeginSuddenDeath( GameTime gameTime )
+		private void BeginSuddenDeath( TimeSpan gameTime )
 		{
 			roundDeath = SuddenDeaths[ random.Next( SuddenDeaths.Length ) ];
 			roundDeath.Initialize( gameTime, Content );
@@ -629,7 +645,7 @@ namespace TanksDrop
 			}
 		}
 
-		private void Reset( bool addScore, GameTime gameTime )
+		private void Reset( bool addScore, TimeSpan gameTime )
 		{
 			IsGameDone = false;
 			Projectiles = new HashSet<ProjectileObject>();
@@ -653,7 +669,7 @@ namespace TanksDrop
 			{
 				System.Threading.Thread.Sleep( StartDelay );
 			}
-			Round = gameTime.TotalGameTime;
+			Round = gameTime;
 			roundDeath = null;
 		}
 
@@ -661,7 +677,7 @@ namespace TanksDrop
 		/// This is called when the game should draw itself.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Draw( GameTime gameTime )
+		protected override void Draw( GameTime givenGameTime )
 		{
 			GraphicsDevice.SetRenderTarget( renderTarget );
 			// TODO: Add your drawing code here
@@ -700,11 +716,25 @@ namespace TanksDrop
 				appearingPowerUp.Draw( spriteBatch, gameTime );
 			spriteBatch.End();
 			GraphicsDevice.SetRenderTarget( null );
-			spriteBatch.Begin();
+			GraphicsDevice.Clear( Color.White );
+			BlendState Multiply = new BlendState()
+			{
+				AlphaSourceBlend = Blend.DestinationAlpha,
+				AlphaDestinationBlend = Blend.Zero,
+				AlphaBlendFunction = BlendFunction.Add,
+				ColorSourceBlend = Blend.DestinationColor,
+				ColorDestinationBlend = Blend.Zero,
+				ColorBlendFunction = BlendFunction.Add
+			};
+			spriteBatch.Begin( SpriteSortMode.BackToFront, Multiply );
 			spriteBatch.Draw( ( Texture2D )renderTarget, Vector2.Zero, Color.White );
+			if ( currentMenu != null )
+			{
+				currentMenu.Draw( gameTime, GraphicsDevice, spriteBatch );
+			}
 			spriteBatch.End();
 
-			base.Draw( gameTime );
+			base.Draw( givenGameTime );
 		}
 	}
 
