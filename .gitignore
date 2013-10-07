@@ -1,4 +1,7 @@
 *cache*
 *.xml
 *.txt
-
+*.exe
+*.pdb
+TanksDrop/bin/
+TanksDrop/obj/
