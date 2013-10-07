@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.Projectiles
 {
+	/// <summary>
+	/// A game object that moves according to its own physics (normally in straight lines) and its goal is to kill tanks.
+	/// </summary>
 	abstract class ProjectileObject
 	{
 		public Vector2 Position;

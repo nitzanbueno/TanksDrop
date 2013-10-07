@@ -8,6 +8,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A 'sudden death power-up' that's only used with the <see cref="SuperNoveyDeath"/> to create an unavoidable circle of bullets.
+	/// </summary>
 	class SuperNoveyBlackHole : BlackHole
 	{
 		public SuperNoveyBlackHole( GameTime gameTime ) : base( gameTime )

@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up that gets put onto a tank that is not its taker, destroying its current power-up if there is, and prevents it from moving for 3 seconds.
+	/// </summary>
 	class Lock : TimedPowerUp
 	{
 		public override float Scale

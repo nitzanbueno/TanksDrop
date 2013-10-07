@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death that has a black hole appear in the center, sucking and killing all tanks as well as all pickups, projectiles and fences but not appearing power-ups.
+	/// </summary>
 	class HoleyDeath : SuddenDeath
 	{
 		Texture2D BlackHoleTex;

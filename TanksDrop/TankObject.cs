@@ -14,6 +14,10 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop
 {
+	/// <summary>
+	/// The basic and only tank usable in game.
+	/// It can move, shoot bullets, place fences, take pickups and use power-ups.
+	/// </summary>
 	class TankObject
 	{
 		public Vector2 Position;
@@ -152,6 +156,7 @@ namespace TanksDrop
 		public float Speed;
 		private TimeSpan LastShoot;
 		private float BulletSpeed;
+		public bool IsGoingBackwards;
 
 		public TankObject( Vector2 position, float rotation, Colors color, KeySet keys, float scale, int shotlimit, int shottime, int fencelimit, int fencetime, float speed, float bulletspeed )
 		{
@@ -244,13 +249,19 @@ namespace TanksDrop
 
 			float moveFactor = 0;
 
-			if ( key.IsKeyDown( Keys.KeyUp ) )
-			{
-				moveFactor += Speed;
-			}
 			if ( key.IsKeyDown( Keys.KeyDown ) )
 			{
+				IsGoingBackwards = true;
 				moveFactor -= Speed;
+			}
+			else
+			{
+				IsGoingBackwards = false;
+			}
+			if ( key.IsKeyDown( Keys.KeyUp ) )
+			{
+				IsGoingBackwards = false;
+				moveFactor += Speed;
 			}
 			if ( moveFactor != 0 )
 			{

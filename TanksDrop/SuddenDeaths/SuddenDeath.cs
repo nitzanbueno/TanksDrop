@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A game technique that kills every tank on the board within a maximum of 20 seconds.
+	/// Used after a set amount of time to prevent long boring matches.
+	/// </summary>
 	abstract class SuddenDeath
 	{
 		protected ContentManager Content;

@@ -10,6 +10,10 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop
 {
+	/// <summary>
+	/// A game object that doesn't move and is picked up by the first tank that steps over it, 
+	/// giving the tank something, either a projectile or a power-up.
+	/// </summary>
 	class Pickup
 	{
 		public Object Carrier;

@@ -9,6 +9,12 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up inspired by Fun Run's extra life that creates a spinning red halo around its taker that, when the tank should be killed, disappears and keeps its taker alive.
+	/// If the taker got hit by a basic bullet, it turns it 180 degrees.
+	/// It also lasts indefinetly so it is not really 'timed'.
+	/// </summary>
+	/// <seealso cref="ForceField"/>
 	class ExtraLife : TimedPowerUp
 	{
 		bool didHit;

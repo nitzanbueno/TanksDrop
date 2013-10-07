@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TanksDrop
 {
+	/// <summary>
+	/// A game object that can be placed by tanks, doesn't move and has the shape of a line.
+	/// </summary>
 	abstract class FenceObject
 	{
 		public Vector2 Point1;

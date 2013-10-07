@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death that has the tanks see their trails then generate many 'awesome faces', eventually filling the board with them.
+	/// </summary>
 	class GlitchyDeath : SuddenDeath
 	{
 		List<Vector2> awesomeFacePositions;

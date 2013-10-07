@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An appearing power-up that creates two portals. Tanks and bullets going through one portal will come out the other.
+	/// </summary>
 	class Portal : AppearingPowerUp
 	{
 		Vector2 portal1Pos;
@@ -83,26 +86,54 @@ namespace TanksDrop.PowerUps
 				{
 					if ( !didTankEnter )
 					{
-						Tank.Position = GameTools.ReturnMove( Tank.Width / 2 + 40, MathHelper.ToDegrees( Tank.Rotation ), portal2Pos );
+						if ( Tank.IsGoingBackwards )
+						{
+							Tank.Position = GameTools.ReturnMove( Tank.Width / 2 + 40, MathHelper.ToDegrees( Tank.Rotation ) + 180, portal2Pos );
+						}
+						else
+						{
+							Tank.Position = GameTools.ReturnMove( Tank.Width / 2 + 40, MathHelper.ToDegrees( Tank.Rotation ), portal2Pos );
+						}
 						didTankEnter = true;
 						didTankEnterNow = true;
 					}
 					else
 					{
-						Tank.Position = GameTools.ReturnMove( 40, MathHelper.ToDegrees( Tank.Rotation ), Tank.Position );
+						if ( Tank.IsGoingBackwards )
+						{
+							Tank.Position = GameTools.ReturnMove( 40, MathHelper.ToDegrees( Tank.Rotation ) + 180, Tank.Position );
+						}
+						else
+						{
+							Tank.Position = GameTools.ReturnMove( 40, MathHelper.ToDegrees( Tank.Rotation ), Tank.Position );
+						}
 					}
 				}
 				else if ( GameTools.RotRectIntersectRect( Tank.Position, Tank.Origin, Tank.Width, Tank.Height, Tank.Rotation, portal2Bounds ) )
 				{
 					if ( !didTankEnter )
 					{
-						Tank.Position = GameTools.ReturnMove( Tank.Width / 2 + 40, MathHelper.ToDegrees( Tank.Rotation ), portal1Pos );
+						if ( Tank.IsGoingBackwards )
+						{
+							Tank.Position = GameTools.ReturnMove( Tank.Width / 2 + 40, MathHelper.ToDegrees( Tank.Rotation ) + 180, portal1Pos );
+						}
+						else
+						{
+							Tank.Position = GameTools.ReturnMove( Tank.Width / 2 + 40, MathHelper.ToDegrees( Tank.Rotation ), portal1Pos );
+						}
 						didTankEnter = true;
 						didTankEnterNow = true;
 					}
 					else
 					{
-						Tank.Position = GameTools.ReturnMove( 40, MathHelper.ToDegrees( Tank.Rotation ), Tank.Position );
+						if ( Tank.IsGoingBackwards )
+						{
+							Tank.Position = GameTools.ReturnMove( 40, MathHelper.ToDegrees( Tank.Rotation ) + 180, Tank.Position );
+						}
+						else
+						{
+							Tank.Position = GameTools.ReturnMove( 40, MathHelper.ToDegrees( Tank.Rotation ), Tank.Position );
+						}
 					}
 				}
 				//else didTankEnterNow = false;

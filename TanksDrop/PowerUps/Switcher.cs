@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An instant power-up that has the user switch places, rotation, power-ups and state (alive or dead) with the closest living tank to it.
+	/// </summary>
 	class Switcher : InstantPowerUp
 	{
 		public Switcher( GameTime gameTime ) : base( gameTime ) { }

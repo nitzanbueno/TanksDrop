@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.Projectiles
 {
+	/// <summary>
+	/// A projectile that explodes when despawning. An explosion kills any tank getting close to it.
+	/// </summary>
 	class Missile : ProjectileObject
 	{
 		bool isExploded;
@@ -85,11 +88,19 @@ namespace TanksDrop.Projectiles
 			return isExploded && ( gameTime.TotalGameTime - explosionTime ).TotalMilliseconds > 2000;
 		}
 
+		/// <summary>
+		/// Sets the blast radius.
+		/// </summary>
+		/// <param name="newBlastRadius">The new blast radius.</param>
 		public void changeBlastRadius( float newBlastRadius )
 		{
 			BoomScale = newBlastRadius;
 		}
 
+		/// <summary>
+		/// Explodes. The size of the explosion is set by the BlastRadius setting.
+		/// </summary>
+		/// <param name="gameTime">The current game time.</param>
 		private void Explode( GameTime gameTime )
 		{
 			isExploded = true;

@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An instant power-up that when used picks a random tank, alive or dead, including the user, and either kills it if it's alive or revives it if it's dead.
+	/// </summary>
 	class Roulette : InstantPowerUp
 	{
 		public Roulette( GameTime gameTime )

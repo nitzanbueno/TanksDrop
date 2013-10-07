@@ -9,6 +9,9 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A power-up that gives a special effect to one tank on the board (normally the one who took it)
+	/// </summary>
 	abstract class TimedPowerUp : PowerUp
 	{
 		public TimedPowerUp( GameTime gameTime, int duration )

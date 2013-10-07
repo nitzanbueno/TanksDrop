@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death that has four sets of 90 bullets each come out of the corners and get sucked into a <see cref="SuperNoveyBlackHole"/> that shoots them at a circle that cannot be avoided by normal tanks.
+	/// </summary>
 	class SuperNoveyDeath : SuddenDeath
 	{
 		bool didSuperNova;

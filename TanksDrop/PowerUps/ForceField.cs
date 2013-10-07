@@ -9,18 +9,22 @@ using Microsoft.Xna.Framework;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up that creates a blue aura around its taker for 5 seconds, keeping it alive and deflecting basic bullets.
+	/// </summary>
+	/// <seealso cref="ExtraLife"/>
 	class ForceField : TimedPowerUp
 	{
-		Texture2D Halo;
+		Texture2D Aura;
 
 		public ForceField( GameTime gameTime )
-			: base( gameTime, 10000 )
+			: base( gameTime, 5000 )
 		{
 		}
 
 		public override Texture2D LoadTex( ContentManager Content )
 		{
-			/*Texture2D n*/Halo = Content.Load<Texture2D>( "Sprites\\ForceField" );
+			/*Texture2D n*/Aura = Content.Load<Texture2D>( "Sprites\\ForceField" );
 			/*Color[] c = new Color[ nHalo.Width * nHalo.Height ];
 			Color[] nc = new Color[ nHalo.Width * nHalo.Height ];
 			nHalo.GetData<Color>( c );
@@ -32,7 +36,7 @@ namespace TanksDrop.PowerUps
 				nc[ i ] = cc;
 			}
 			Halo.SetData<Color>( nc );*/
-			return Halo;
+			return Aura;
 		}
 
 		public override void DoPickup( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences )
@@ -74,7 +78,7 @@ namespace TanksDrop.PowerUps
 			Color c = Color.White;
 			if ( Taken )
 			{
-				spriteBatch.Draw( Halo, Owner.Position, null, c, 0, new Vector2( 16, 16 ), Owner.Scale * 1.5F, SpriteEffects.None, 0.9F );
+				spriteBatch.Draw( Aura, Owner.Position, null, c, 0, new Vector2( 16, 16 ), Owner.Scale * 1.5F, SpriteEffects.None, 0.9F );
 			}
 		}
 	}

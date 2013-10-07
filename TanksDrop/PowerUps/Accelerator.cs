@@ -9,12 +9,30 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// An Appearing Power-up that causes a tank that steps on it to go 20x its speed for 0.1 seconds.
+	/// </summary>
 	class Accelerator : AppearingPowerUp
 	{
+		/// <summary>
+		/// The accelerator's texture.
+		/// </summary>
 		Texture2D tex;
+
+		/// <summary>
+		/// The accelerator's position.
+		/// </summary>
 		Vector2 Position;
+
+		/// <summary>
+		/// The tanks that are accelerated at the current tick.
+		/// </summary>
 		HashSet<Tuple<TankObject, TimeSpan>> TanksToAffect;
 
+		/// <summary>
+		/// Constructs a new accelerator object.
+		/// </summary>
+		/// <param name="gameTime">The current game time.</param>
 		public Accelerator( GameTime gameTime )
 			: base( gameTime, 10000 )
 		{

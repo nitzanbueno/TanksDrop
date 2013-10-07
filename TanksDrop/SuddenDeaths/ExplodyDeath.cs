@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death where every living tank explodes.
+	/// </summary>
 	class ExplodyDeath : SuddenDeath
 	{
 		public override bool Draw( SpriteBatch spriteBatch, TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, GameTime gameTime )

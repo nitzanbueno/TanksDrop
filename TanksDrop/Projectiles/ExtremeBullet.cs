@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.Projectiles
 {
+	/// <summary>
+	/// A projectile that looks like a huge black oval that destroys all pickups, fences and tanks in its way and despawns when hitting a wall.
+	/// </summary>
 	class ExtremeBullet : ProjectileObject
 	{
 		public override float Scale

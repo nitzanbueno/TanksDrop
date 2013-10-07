@@ -9,6 +9,10 @@ using TanksDrop.Projectiles;
 
 namespace TanksDrop.PowerUps
 {
+	/// <summary>
+	/// A timed power-up that causes its taker to turn into a 'clone' of another living tank, and either switches them or not.
+	/// When a tank is killed, it is unknown which one it was until the power-up's effects end.
+	/// </summary>
 	class Concealer : TimedPowerUp
 	{
 		bool didSwitch;

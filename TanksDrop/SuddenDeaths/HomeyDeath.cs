@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TanksDrop.SuddenDeaths
 {
+	/// <summary>
+	/// A sudden death that has 4 homing bullets come out of the corners and kill every tank. Sometimes doesn't work so tanks disappear after 20 seconds.
+	/// </summary>
 	class HomeyDeath : SuddenDeath
 	{
 		int width;
