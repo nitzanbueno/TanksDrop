@@ -40,7 +40,6 @@ namespace TanksDrop.SuddenDeaths
 			for ( int i = 0; i < awesomeFacePositions.Count; i++ )
 			{
 				spriteBatch.Draw( awesomeFace, awesomeFacePositions[ i ], null, awesomeFaceColors[ i ], 0, Vector2.Zero, 1, SpriteEffects.None, 1 );
-				awesomeFacePositions[ i ] += new Vector2( xAdvances[ i ], yAdvances[ i ] );
 			}
 			return false;
 		}
@@ -58,6 +57,10 @@ namespace TanksDrop.SuddenDeaths
 			}
 			else if ( millisecs > 10000 )
 			{
+				awesomeFacePositions = new List<Vector2>();
+				xAdvances = new List<float>();
+				yAdvances = new List<float>();
+				awesomeFaceColors = new List<Color>();
 				Add( 10 );
 			}
 			if ( ( gameTime - startTime ).TotalMilliseconds > 12000 )
@@ -66,6 +69,10 @@ namespace TanksDrop.SuddenDeaths
 				{
 					Tank.Kill();
 				}
+			}
+			for ( int i = 0; i < awesomeFacePositions.Count; i++ )
+			{
+				awesomeFacePositions[ i ] += new Vector2( xAdvances[ i ], yAdvances[ i ] );
 			}
 			return true;
 		}

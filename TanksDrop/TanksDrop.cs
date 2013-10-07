@@ -16,45 +16,7 @@ using TanksDrop.Menus;
 
 namespace TanksDrop
 {
-	class AProj : ProjectileObject
-	{
-		/// <summary>
-		/// The width of the screen.
-		/// </summary>
-		public int ScrWidth;
-
-		/// <summary>
-		/// The height of the screen.
-		/// </summary>
-		public int ScrHeight;
-
-		public AProj( Texture2D blank, int width, int height )
-			: base()
-		{
-			tex = blank;
-			ScrWidth = width;
-			ScrHeight = height;
-		}
-
-		public override void Draw( TimeSpan gameTime, SpriteBatch spriteBatch )
-		{
-		}
-
-		public override float Scale
-		{
-			get { return 0; }
-		}
-		public override Texture2D LoadTex( ContentManager Content )
-		{
-			return tex;
-		}
-
-		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
-		{
-			return false;
-		}
-	}
-
+	
 	/// <summary>
 	/// This is the main type for your game
 	/// </summary>
@@ -77,6 +39,7 @@ namespace TanksDrop
 		Random random;
 
 		public Menu currentMenu;
+		public Menu pauseMenu;
 
 		// Arguments
 		private int NumOfPlayers;
@@ -187,13 +150,13 @@ namespace TanksDrop
 			Fences = new HashSet<FenceObject>();
 			Pickups = new HashSet<Pickup>();
 			SuddenDeaths = new SuddenDeath[] { 
-				new ShrinkyDeath(),
-				new ExplodyDeath(),
+				//new ShrinkyDeath(),
+				//new ExplodyDeath(),
 				new GlitchyDeath(),
-				new PossessyDeath(),
-				new HoleyDeath(),
-				new HomeyDeath(),
-				new SuperNoveyDeath(),
+				//new PossessyDeath(),
+				//new HoleyDeath(),
+				//new HomeyDeath(),
+				//new SuperNoveyDeath(),
 			};
 			PickupableOptions = new Type[]
 			{
@@ -360,6 +323,7 @@ namespace TanksDrop
 			blank = new Texture2D( GraphicsDevice, 2, 2, false, SurfaceFormat.Color );
 			blank.SetData( Enumerable.Repeat<Color>( Color.White, 4 ).ToArray<Color>() );
 			Projectiles.Add( new AProj( blank, width, height ) );
+			pauseMenu = new PauseMenu( this, Content );
 		}
 
 		/// <summary>
@@ -397,7 +361,22 @@ namespace TanksDrop
 				this.Exit();
 
 			MouseState mouse = Mouse.GetState();
-
+			if ( key.IsKeyDown( Keys.P ) && oldkey.IsKeyUp( Keys.P ) )
+			{
+				if ( currentMenu == null )
+				{
+					currentMenu = pauseMenu;
+				}
+				else
+				{
+					currentMenu = null;
+				}
+			}
+			if ( currentMenu != null && !currentMenu.Update( gameTime, key, mouse ) )
+			{
+				EndUpdate( givenGameTime, key );
+				return;
+			}
 			if ( key.IsKeyDown( Keys.D3 ) )
 			{
 				IsFixedTimeStep = true;
@@ -406,14 +385,6 @@ namespace TanksDrop
 			else
 			{
 				IsFixedTimeStep = false;
-			}
-			if ( key.IsKeyDown( Keys.P ) )
-			{
-				currentMenu = new PauseMenu( this, Content );
-			}
-			if ( currentMenu != null && !currentMenu.Update( gameTime, key, mouse ) )
-			{
-				return;
 			}
 			gameTime += givenGameTime.ElapsedGameTime;
 			bool shouldUpdate = roundDeath == null || roundDeath.Update( Tanks, Projectiles, Fences, Pickups, gameTime );
@@ -502,6 +473,11 @@ namespace TanksDrop
 			}
 
 			CheckGeneralGame( gameTime, ref key, true );
+			EndUpdate( givenGameTime, key );
+		}
+
+		private void EndUpdate( GameTime givenGameTime, KeyboardState key )
+		{
 			oldkey = key;
 			base.Update( givenGameTime );
 		}
@@ -735,6 +711,45 @@ namespace TanksDrop
 			spriteBatch.End();
 
 			base.Draw( givenGameTime );
+		}
+	}
+
+	class AProj : ProjectileObject
+	{
+		/// <summary>
+		/// The width of the screen.
+		/// </summary>
+		public int ScrWidth;
+
+		/// <summary>
+		/// The height of the screen.
+		/// </summary>
+		public int ScrHeight;
+
+		public AProj( Texture2D blank, int width, int height )
+			: base()
+		{
+			tex = blank;
+			ScrWidth = width;
+			ScrHeight = height;
+		}
+
+		public override void Draw( TimeSpan gameTime, SpriteBatch spriteBatch )
+		{
+		}
+
+		public override float Scale
+		{
+			get { return 0; }
+		}
+		public override Texture2D LoadTex( ContentManager Content )
+		{
+			return tex;
+		}
+
+		public override bool Update( TimeSpan gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
+		{
+			return false;
 		}
 	}
 

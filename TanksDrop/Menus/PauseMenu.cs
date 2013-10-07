@@ -11,20 +11,20 @@ namespace TanksDrop.Menus
 {
 	class PauseMenu : Menu
 	{
-		MenuButton pauseButton;
+		MenuButton resumeButton;
 
 		SpriteFont font;
 
 		public PauseMenu( TanksDrop Game, ContentManager Content )
 			: base( Game, Content )
 		{
-			pauseButton = new MenuButton( new Rectangle( Game.width / 2, Game.height - 100, 100, 50 ), "Resume" );
+			resumeButton = new MenuButton( new Rectangle( Game.width / 2 - 100, Game.height - 100, 300, 50 ), "Click Here To Resume" );
 			font = Content.Load<SpriteFont>( "Score" );
 		}
 
 		public override bool Update( TimeSpan gameTime, KeyboardState Key, MouseState Mouse )
 		{
-			if ( new Rectangle( Mouse.X, Mouse.Y, 1, 1 ).Intersects( pauseButton.ButtonRectangle ) && Mouse.LeftButton == ButtonState.Pressed )
+			if ( new Rectangle( Mouse.X, Mouse.Y, 1, 1 ).Intersects( resumeButton.ButtonRectangle ) && Mouse.LeftButton == ButtonState.Pressed )
 			{
 				Game.currentMenu = null;
 				return true;
@@ -44,7 +44,8 @@ namespace TanksDrop.Menus
 			spriteBatch.Draw( LightMap, new Rectangle( 0, 0, Game.width, Game.height ), Color.White );
 			spriteBatch.End();
 			spriteBatch.Begin();
-			spriteBatch.DrawString( font, pauseButton.Text, new Vector2( pauseButton.ButtonRectangle.X, pauseButton.ButtonRectangle.Y ), Color.White );
+			spriteBatch.DrawString( font, resumeButton.Text, new Vector2( resumeButton.ButtonRectangle.X, resumeButton.ButtonRectangle.Y ), Color.White );
+			spriteBatch.DrawString( font, "Paused", new Vector2( Game.width / 2 - 100, 100 ), Color.White );
 		}
 	}
 }
