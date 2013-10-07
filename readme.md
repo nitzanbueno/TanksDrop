@@ -248,8 +248,8 @@ Seriously. No escape, unless you have the force field or ghost power-ups.
 
 
 FINISHING NOTES:
-In the project directory you will find a 'Fences' Folder.
-It is pending and will be implemented in a later update.
+In the project directory you will find a 'Menu' Folder.
+It will be implemented in later updates in the 'menu' branch.
 I am new in GitHub, but i know C# for over 6 years and I really hope you enjoy this game, even though it's kinda complicated.
 Thank you for taking the time to read this and hopefully play the game, and any comments will be appreciated.
 Nitzan Bueno
