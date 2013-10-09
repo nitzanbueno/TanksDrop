@@ -26,14 +26,15 @@ namespace TanksDrop.PowerUps
 
 		public override void Use( TankObject[] Tanks, HashSet<ProjectileObject> Projectiles, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups, GameTime gameTime )
 		{
-			foreach ( TankObject t in Tanks )
-			{
-				t.RemovePowerUps();
-			}
 			HashSet<Pickup> pickups = new HashSet<Pickup>( Pickups );
 			foreach ( Pickup pickup in pickups ) Pickups.Remove( pickup );
 			HashSet<ProjectileObject> projectiles = new HashSet<ProjectileObject>( Projectiles );
-			foreach ( ProjectileObject p in projectiles ) if ( !( p is AProj ) ) Projectiles.Remove( p ); 
+			foreach ( ProjectileObject p in projectiles ) if ( !( p is AProj ) ) Projectiles.Remove( p );
+			foreach ( TankObject t in Tanks )
+			{
+				t.RemovePowerUps();
+				t.ShotsOnBoard = 0;
+			}
 		}
 	}
 }
