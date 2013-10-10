@@ -113,8 +113,15 @@ namespace TanksDrop
 
 		private void Read()
 		{
-			reader = new StreamReader( File.OpenRead( "settings.ini" ) );
 			Lines = new List<string>();
+			try
+			{
+				reader = new StreamReader( File.OpenRead( "settings.ini" ) );
+			}
+			catch ( Exception )
+			{
+				return;
+			}
 			while ( !reader.EndOfStream )
 			{
 				try
