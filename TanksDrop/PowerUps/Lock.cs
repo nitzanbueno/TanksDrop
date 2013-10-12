@@ -41,7 +41,14 @@ namespace TanksDrop.PowerUps
 			if ( Taken && Owner == null )
 			{
 				HashSet<TankObject> tanks = new HashSet<TankObject>( Tanks );
-				tanks.Remove( OrigOwner );
+				foreach ( TankObject Tank in Tanks )
+				{
+					if ( ( Tank.TeamString == OrigOwner.TeamString && OrigOwner.TeamShield ) || Tank == OrigOwner || !Tank.IsInGame )
+					{
+						tanks.Remove( Tank );
+					}
+				}
+				if ( tanks.Count == 0 ) return true;
 				TankObject newOwner = ( tanks.ToArray<TankObject>() )[ random.Next( tanks.Count ) ];
 				newOwner.powerUp = this;
 				Owner = newOwner;

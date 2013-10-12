@@ -532,7 +532,7 @@ namespace TanksDrop
 			}
 		}
 
-		private void CheckVictory( GameTime gameTime )
+		private bool CheckVictory( GameTime gameTime )
 		{
 			string WinnerString = "";
 			bool isWinner = true;
@@ -553,6 +553,7 @@ namespace TanksDrop
 				IsGameDone = true;
 				CountDown = gameTime.TotalGameTime;
 			}
+			return isWinner;
 		}
 
 		private void PlacePickup( GameTime gameTime, bool notfirst )
@@ -640,8 +641,10 @@ namespace TanksDrop
 			}
 		}
 
-		private void Reset( bool addScore, GameTime gameTime )
+		private void Reset( bool toAddScore, GameTime gameTime )
 		{
+			bool addScore = toAddScore;
+			if ( CheckVictory( gameTime ) ) addScore = true;
 			IsGameDone = false;
 			Projectiles = new HashSet<ProjectileObject>();
 			Projectiles.Add( new AProj( blank, width, height ) );
@@ -668,7 +671,7 @@ namespace TanksDrop
 				}
 				Tank.Reset();
 			}
-			if ( StartDelay > 0 )
+			if ( StartDelay > 0 && toAddScore )
 			{
 				System.Threading.Thread.Sleep( StartDelay );
 			}
