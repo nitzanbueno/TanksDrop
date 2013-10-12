@@ -45,6 +45,7 @@ namespace TanksDrop
 			random = new Random();
 			Position = new Vector2( random.Next( width ), random.Next( height ) );
 			Carrier = carrier;
+			if ( carrier == null ) throw new NullReferenceException( "Carrier is null." );
 			GetCarrierData( Content );
 			originalTime = gameTime.TotalGameTime;
 		}
