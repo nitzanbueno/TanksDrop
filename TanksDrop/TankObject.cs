@@ -157,8 +157,12 @@ namespace TanksDrop
 		private TimeSpan LastShoot;
 		private float BulletSpeed;
 		public bool IsGoingBackwards;
+		public string TeamString;
+		public bool TeamShield;
+		public bool TeamGhost;
+		public bool Selfish;
 
-		public TankObject( Vector2 position, float rotation, Colors color, KeySet keys, float scale, int shotlimit, int shottime, int fencelimit, int fencetime, float speed, float bulletspeed )
+		public TankObject( Vector2 position, float rotation, Colors color, KeySet keys, float scale, int shotlimit, int shottime, int fencelimit, int fencetime, float speed, float bulletspeed, string teamString, bool teamShield, bool teamGhost, bool selfish )
 		{
 			Position = position;
 			OP = position;
@@ -179,6 +183,10 @@ namespace TanksDrop
 			OSP = speed;
 			Speed = OSP;
 			BulletSpeed = bulletspeed;
+			TeamString = teamString;
+			TeamShield = teamShield;
+			TeamGhost = teamGhost;
+			Selfish = selfish;
 		}
 
 		public TankObject()

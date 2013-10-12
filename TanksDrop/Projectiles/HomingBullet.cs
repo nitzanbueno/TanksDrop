@@ -43,7 +43,7 @@ namespace TanksDrop.Projectiles
 				foreach ( TankObject Tank in Tanks )
 				{
 					float d = Vector2.Distance( Tank.Position, Position ); // by taking the distance of every tank
-					if ( d < dist && Tank.IsInGame ) // and finding the shortest.
+					if ( d < dist && Tank.IsInGame/* && ( !Owner.TeamShield || Tank.TeamString != Owner.TeamString )*/ ) // and finding the shortest.
 					{
 						dist = d;
 						ClosestTank = Tank;
@@ -58,7 +58,7 @@ namespace TanksDrop.Projectiles
 				}
 			}
 
-			return UpdatePhysics( gameTime, Tanks, Fences ) ? true : base.Update( gameTime, Tanks, Fences, Pickups );
+			return UpdatePhysics( gameTime, Tanks, Fences, false ) ? true : base.Update( gameTime, Tanks, Fences, Pickups );
 		}
 
 		public override void Draw( GameTime gameTime, SpriteBatch spriteBatch )

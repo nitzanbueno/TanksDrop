@@ -57,7 +57,7 @@ namespace TanksDrop
 	/// <summary>
 	/// This is the main type for your game
 	/// </summary>
-	public class TanksDrop : Microsoft.Xna.Framework.Game
+	public class TanksDrop : Game
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
@@ -171,21 +171,32 @@ namespace TanksDrop
 			Colors p3Color = LoadSetting( "Player3Color", Colors.Blue );
 			Colors p4Color = LoadSetting( "Player4Color", Colors.Orange );
 
-			Tanks[ 0 ] = new TankObject( new Vector2( 50, 50 ), 45, p1Color, p1keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed );
+			string p1TeamString = LoadSetting( "Player1TeamString", "1" );
+			string p2TeamString = LoadSetting( "Player2TeamString", "2" );
+			string p3TeamString = LoadSetting( "Player3TeamString", "3" );
+			string p4TeamString = LoadSetting( "Player4TeamString", "4" );
+
+			string ts = LoadSetting( "TeamStatus", "None" ).ToLower();
+			bool TeamShield = ts == "shield" || ts == "ghost";
+			bool TeamGhost = ts == "ghost";
+			
+			ts = LoadSetting( "Selfish", "No" ).ToLower();
+			bool Selfish = ts == "true" || ts == "1" || ts == "yes";
+
+			Tanks[ 0 ] = new TankObject( new Vector2( 50, 50 ), 45, p1Color, p1keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed, p1TeamString, TeamShield, TeamGhost, Selfish );
 
 			if ( NumOfPlayers >= 2 )
 			{
-				Tanks[ 1 ] = new TankObject( new Vector2( width - 50, height - 50 ), 225, p2Color, p2keys
-					, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed );
+				Tanks[ 1 ] = new TankObject( new Vector2( width - 50, height - 50 ), 225, p2Color, p2keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed, p2TeamString, TeamShield, TeamGhost, Selfish );
 			}
 
 			if ( NumOfPlayers >= 3 )
 			{
-				Tanks[ 2 ] = new TankObject( new Vector2( width - 50, 50 ), 135, p3Color, p3keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed );
+				Tanks[ 2 ] = new TankObject( new Vector2( width - 50, 50 ), 135, p3Color, p3keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed, p3TeamString, TeamShield, TeamGhost, Selfish );
 			}
 			if ( NumOfPlayers >= 4 )
 			{
-				Tanks[ 3 ] = new TankObject( new Vector2( 50, height - 50 ), 315, p4Color, p4keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed );
+				Tanks[ 3 ] = new TankObject( new Vector2( 50, height - 50 ), 315, p4Color, p4keys, TankScale, ShotLimit, ShotTime, FenceLimit, FenceTime, TankSpeed, BulletSpeed, p4TeamString, TeamShield, TeamGhost, Selfish );
 			}
 			Projectiles = new HashSet<ProjectileObject>();
 			Fences = new HashSet<FenceObject>();
@@ -264,7 +275,7 @@ namespace TanksDrop
 		{
 			foreach ( string l in Lines )
 			{
-				if ( l[ 0 ] != '#' )
+				if ( l != "" && l[ 0 ] != '#' && l[0] != '[' )
 				{
 					string[] Line = l.Split( '=' );
 					if ( Line[ 0 ].ToLower() == setting.ToLower() )
@@ -282,22 +293,8 @@ namespace TanksDrop
 
 		private string LoadSetting( string setting, string defaultSetting )
 		{
-			foreach ( string l in Lines )
-			{
-				if ( l[ 0 ] != '#' )
-				{
-					string[] Line = l.Split( '=' );
-					if ( Line[ 0 ].ToLower() == setting.ToLower() )
-					{
-						try
-						{
-							return Line[ 1 ];
-						}
-						catch ( Exception ) { }
-					}
-				}
-			}
-			return defaultSetting;
+			string s = LoadSetting( setting );
+			return s == "" ? defaultSetting : s;
 		}
 
 		private int LoadSetting( string setting, int defaultSetting )
@@ -524,23 +521,7 @@ namespace TanksDrop
 				if ( shouldUpdateTanks )
 					tank.Update( gameTime, key, oldkey, width, height, Tanks, Projectiles, Fences, Pickups, GraphicsDevice );
 			}
-
-			if ( IsATankOut )
-			{
-				int HowManyIn = 0;
-				foreach ( TankObject Tank in Tanks )
-				{
-					if ( !Tank.IsOfficiallyOut && Tank.IsInGame )
-					{
-						HowManyIn++;
-					}
-				}
-				if ( HowManyIn <= 1 )
-				{
-					IsGameDone = true;
-					CountDown = gameTime.TotalGameTime;
-				}
-			}
+			CheckVictory( gameTime );
 			if ( IsGameDone && ( ( gameTime.TotalGameTime - CountDown ).TotalMilliseconds > TimeDelay || TimeDelay <= 0 ) )
 			{
 				Reset( true, gameTime );
@@ -548,6 +529,29 @@ namespace TanksDrop
 			else if ( ( gameTime.TotalGameTime - Round ).Seconds >= SuddenDeathTime && SuddenDeathTime > 0 && roundDeath == null )
 			{
 				BeginSuddenDeath( gameTime );
+			}
+		}
+
+		private void CheckVictory( GameTime gameTime )
+		{
+			string WinnerString = "";
+			bool isWinner = true;
+			foreach ( TankObject Tank in Tanks )
+			{
+				if ( !Tank.IsOfficiallyOut && Tank.IsInGame && ( WinnerString == "" || WinnerString == Tank.TeamString ) )
+				{
+					WinnerString = Tank.TeamString;
+				}
+				else if ( !Tank.IsOfficiallyOut && Tank.IsInGame && WinnerString != Tank.TeamString && WinnerString != "" )
+				{
+					isWinner = false;
+					break;
+				}
+			}
+			if ( isWinner && !IsGameDone )
+			{
+				IsGameDone = true;
+				CountDown = gameTime.TotalGameTime;
 			}
 		}
 
@@ -648,9 +652,17 @@ namespace TanksDrop
 				appearingPowerUp.Stop();
 				appearingPowerUp = null;
 			}
+			string WinnerString = "";
 			foreach ( TankObject Tank in Tanks )
 			{
-				if ( Tank.IsInGame && addScore )
+				if ( Tank.IsInGame )
+				{
+					WinnerString = Tank.TeamString;
+				}
+			}
+			foreach ( TankObject Tank in Tanks )
+			{
+				if ( Tank.TeamString == WinnerString && addScore )
 				{
 					Tank.Score++;
 				}

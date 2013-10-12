@@ -45,7 +45,10 @@ namespace TanksDrop
 			if ( tank.powerUp != null )
 			{
 				if ( tank.powerUp.DoesGoThruFence( this ) ) return factor;
-				else return 0;
+			}
+			else
+			{
+				if ( Owner.TeamGhost && ( tank != Owner || Owner.Selfish ) && tank.TeamString == Owner.TeamString ) return factor;
 			}
 			return 0;
 		}

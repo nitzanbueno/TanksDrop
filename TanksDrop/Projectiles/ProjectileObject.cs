@@ -75,7 +75,7 @@ namespace TanksDrop.Projectiles
 			doesCount = true;
 		}
 
-		protected bool UpdatePhysics( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences )
+		protected bool UpdatePhysics( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, bool TeamShield )
 		{
 			if ( Position.X + bWidth >= width || Position.X <= 0 )
 			{
@@ -95,7 +95,14 @@ namespace TanksDrop.Projectiles
 					bool intersects = GameTools.RotRectIntersectRect( Tank.Position, Tank.Origin, Tank.Width, Tank.Height, Tank.Rotation, boundingBox );
 					if ( intersects )
 					{
+					}
+					if ( intersects && ( ( !TeamShield || !Tank.TeamShield ) || Tank.TeamString != Owner.TeamString || (Tank == Owner && !Owner.Selfish) ) )
+					{
 						if ( Tank.BulletHit( this ) ) return true;
+					}
+					else if ( intersects && TeamShield && Tank.TeamShield && Tank.TeamString == Owner.TeamString && (Tank != Owner || Owner.Selfish) && !Owner.TeamGhost )
+					{
+						DoShielded();
 					}
 				}
 			}
@@ -147,6 +154,10 @@ namespace TanksDrop.Projectiles
 		public void ChangeDuration( float newDuration )
 		{
 			duration = newDuration;
+		}
+
+		protected virtual void DoShielded()
+		{
 		}
 	}
 }

@@ -57,12 +57,17 @@ namespace TanksDrop.Projectiles
 
 		public override bool Update( GameTime gameTime, TankObject[] Tanks, HashSet<FenceObject> Fences, HashSet<Pickup> Pickups )
 		{
-			return UpdatePhysics( gameTime, Tanks, Fences ) ? true : base.Update( gameTime, Tanks, Fences, Pickups );
+			return UpdatePhysics( gameTime, Tanks, Fences, Owner.TeamShield ) ? true : base.Update( gameTime, Tanks, Fences, Pickups );
 		}
 
 		public override void Draw( GameTime gameTime, SpriteBatch spriteBatch )
 		{
 			spriteBatch.Draw( tex, Position, null, Color.Black, 0F, new Vector2( 16, 16 ), Scale, SpriteEffects.None, 0 );
+		}
+
+		protected override void DoShielded()
+		{
+			Turn( 180 );
 		}
 	}
 }

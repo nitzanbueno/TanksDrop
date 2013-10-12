@@ -67,7 +67,7 @@ namespace TanksDrop.Projectiles
 			bool shouldBeDestroyed = false;
 			if ( !isExploded )
 			{
-				shouldBeDestroyed = UpdatePhysics( gameTime, Tanks, Fences );
+				shouldBeDestroyed = UpdatePhysics( gameTime, Tanks, Fences, false );
 			}
 			else
 			{
