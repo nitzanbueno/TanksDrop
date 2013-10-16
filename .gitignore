@@ -7,3 +7,4 @@ TanksDrop/bin/
 TanksDrop/obj/
 TanksDrop/publish/
 *TemporaryKey*
+*.suo
